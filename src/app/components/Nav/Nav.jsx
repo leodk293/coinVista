@@ -5,7 +5,8 @@ import Logo from "../logo/Logo";
 import Link from "next/link";
 import Image from "next/image";
 import { LogOut } from "lucide-react";
-import { Linkedin, Facebook, Twitter } from "lucide-react";
+import { Linkedin, Facebook } from "lucide-react";
+import { BsTwitterX } from "react-icons/bs";
 
 export default function Nav() {
   async function handleSignOut() {
@@ -35,10 +36,10 @@ export default function Nav() {
           <Facebook size={28} color="#ffffff" />
         </Link>
         <Link
-          className=" text-white text-2xl border border-transparent p-2 bg-[#1DA1F2] rounded-[5px]"
+          className=" text-white text-2xl border border-transparent p-2 bg-black rounded-[5px]"
           href={"/"}
         >
-          <Twitter size={28} color="#ffffff" />
+          <BsTwitterX size={28} />
         </Link>
       </nav>
 
