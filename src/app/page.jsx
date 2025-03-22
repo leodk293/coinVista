@@ -1,6 +1,5 @@
 'use client';
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loader from "./components/loader/Loader";
@@ -11,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     if(status === "authenticated") {
-      router.push('/ai-image-creator');
+      router.push('/home');
     } else if(status === "unauthenticated") {
       router.push('/signin');
     }

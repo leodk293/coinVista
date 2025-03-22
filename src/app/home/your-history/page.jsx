@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Nav from "../components/Nav/Nav";
 import Loader from "../components/loader/Loader";
 import { Trash2 } from "lucide-react";
-import { nanoid } from "nanoid";
+
 
 export default function Page() {
   const { data: session } = useSession();

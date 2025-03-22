@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Nav from "../components/Nav/Nav";
 import { useSession } from "next-auth/react";
 import { Images, Download } from "lucide-react";
-import models from "./models";
+import models from "@/app/models";
 import { PencilRuler, X, Sparkles } from "lucide-react";
 import { nanoid } from "nanoid";
-import HistoryBtn from "../components/HistoryBtn";
-import examplePrompts from "./prompt";
+import HistoryBtn from "@/app/components/HistoryBtn";
+import examplePrompts from "@/app/prompt";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Page() {
   const { data: session } = useSession();
@@ -20,7 +20,7 @@ export default function Page() {
   const [prompt, setPrompt] = useState("");
   const [generatedImages, setGeneratedImages] = useState([]); // Array to store multiple images
   const [imageCount, setImageCount] = useState(1); // Default to 1 image
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
@@ -177,16 +177,17 @@ export default function Page() {
 
   return (
     <>
-      <Nav />
-
       <HistoryBtn />
       <main className="flex flex-col gap-4 mx-auto max-w-4xl">
         <div className="text-center mt-10">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Welcome,{" "}
-            <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
-              {session?.user?.name || "Creator"}
-            </span>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+            <Typewriter
+              words={[`Welcome ${session?.user?.name}`]}
+              loop={1}
+              cursor
+              cursorStyle="/"
+              typeSpeed={55}
+            />
           </h1>
           <p className="text-gray-600 mt-2">
             What would you like to create today?
@@ -300,6 +301,9 @@ export default function Page() {
             </div>
           )}
         </form>
+        <p className=" text-gray-400 italic text-[14px]">
+          No that an error can be occurred generating images
+        </p>
 
         {isSubmitting ? (
           <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px]">
