@@ -1,9 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav/Nav";
-import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { Images, Download } from "lucide-react";
 import models from "./models";
 import { PencilRuler, X, Sparkles } from "lucide-react";
@@ -13,111 +11,132 @@ import examplePrompts from "./prompt";
 
 export default function Page() {
   const { data: session } = useSession();
+  const isAuthenticated = !!session?.user?.id;
 
-  const [imageCount, setImageCount] = useState("1");
-  const [model, setModel] = useState("");
-  const [ratio, setRatio] = useState("");
+  const [model, setModel] = useState({
+    name: "",
+    url: "",
+  });
   const [prompt, setPrompt] = useState("");
-
+  const [generatedImages, setGeneratedImages] = useState([]); // Array to store multiple images
+  const [imageCount, setImageCount] = useState(1); // Default to 1 image
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [tabImage, setTabImage] = useState([]);
+  const [error, setError] = useState(null);
+  const [modelsLoaded, setModelsLoaded] = useState(false);
 
-  // Map aspect ratios to their numeric values
-  const ratioMapping = {
-    "Square (1:1)": { width: 512, height: 512 },
-    "Landscape (16:9)": { width: 576, height: 320 },
-    "Portrait (9:16)": { width: 320, height: 576 }
-  };
+  useEffect(() => {
+    if (models.length > 0) {
+      setModelsLoaded(true);
+    }
+  }, []);
+
+  const isFormValid = prompt.trim().length > 0 && model.url && isAuthenticated;
 
   function generateRandomPrompt() {
     const randomIndex = Math.floor(Math.random() * examplePrompts.length);
     setPrompt(examplePrompts[randomIndex]);
   }
 
-  async function generateImage(prompt, generatingModel, count, aspectRatio) {
-    try {
-      // Clear previous images when generating new ones
-      setTabImage([]);
-      
-      // Get the width and height based on the selected ratio
-      const dimensions = ratioMapping[aspectRatio] || { width: 512, height: 512 };
-      
-      // Prepare the request data
-      const requestData = {
-        inputs: prompt,
-        parameters: {
-          negative_prompt: "blurry, bad quality, distorted, disfigured",
-          num_inference_steps: 30,
-          width: dimensions.width,
-          height: dimensions.height
-        }
-      };
+  const getGridClasses = () => {
+    switch (imageCount) {
+      case 1:
+        return "grid-cols-1 max-w-2xl mx-auto";
+      case 2:
+        return "grid-cols-2";
+      case 3:
+        return "grid-cols-3";
+      case 4:
+        return "grid-cols-2 md:grid-cols-4";
+      default:
+        return "grid-cols-1";
+    }
+  };
 
-      // Generate the specified number of images
-      const generatedImages = [];
-      
-      for (let i = 0; i < parseInt(count); i++) {
-        const response = await fetch(
-          `https://router.huggingface.co/${generatingModel}`,
-          {
+  const getImageClasses = () => {
+    switch (imageCount) {
+      case 1:
+        return "w-full h-96";
+      case 2:
+        return "w-full h-80";
+      case 3:
+        return "w-full h-64";
+      case 4:
+        return "w-full h-56";
+      default:
+        return "w-full h-64";
+    }
+  };
+
+  async function generateImage(data, modelUrl) {
+    try {
+      // Create an array of promises for generating multiple images
+      const imagePromises = [];
+
+      for (let i = 0; i < imageCount; i++) {
+        imagePromises.push(
+          fetch(`https://api-inference.huggingface.co/models/${modelUrl}`, {
             headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY}`,
               "Content-Type": "application/json",
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY}`,
+              "x-use-cache": "false",
+              "x-wait-for-model": "false",
             },
             method: "POST",
-            body: JSON.stringify(requestData),
-          }
+            body: JSON.stringify({
+              inputs: data,
+            }),
+          })
         );
+      }
 
+      // Wait for all image generation requests to complete
+      const responses = await Promise.all(imagePromises);
+
+      // Process each response
+      const imageUrls = [];
+      for (const response of responses) {
         if (!response.ok) {
           throw new Error(`Error generating image: ${response.statusText}`);
         }
-
-        // Convert the response to a Blob
         const result = await response.blob();
-
-        // Create a URL from the Blob
         const imageUrl = URL.createObjectURL(result);
-        console.log(`Image ${i+1} generated successfully`);
-        
-        // Add unique ID to each image for management
-        generatedImages.push({
-          id: nanoid(),
-          url: imageUrl,
-          prompt: prompt,
-          model: generatingModel,
-          ratio: aspectRatio
-        });
+        imageUrls.push(imageUrl);
       }
-      
-      setTabImage(generatedImages);
-      return generatedImages;
+
+      console.log(`Generated ${imageUrls.length} images successfully`);
+
+      // Update the state with all generated images
+      setGeneratedImages(imageUrls);
+      setError(null);
     } catch (error) {
       console.error("Error generating images:", error);
-      return [];
+      setError("Failed to generate images. Please try again.");
+      setGeneratedImages([]);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (!session?.user?.id) {
-      console.log("Please sign in to generate images");
+    if (!isAuthenticated) {
+      setError("Please sign in to generate images");
       return;
     }
 
     setIsSubmitting(true);
+    setError(null);
 
     try {
       const promptData = {
         content: prompt,
-        imageCount,
-        model,
-        ratio,
+        model: model.name,
         userId: session.user.id,
       };
 
-      const saveResponse = await fetch("/api/prompt", {
+      const saveResponse = await fetch(`/api/prompt`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,19 +147,17 @@ export default function Page() {
       if (!saveResponse.ok) {
         throw new Error("Failed to save prompt history");
       }
-      
-      // Generate the images with proper parameters
-      await generateImage(prompt, model, imageCount, ratio);
 
-      console.log("Successfully generated images with:", {
+      generateImage(prompt, model.url);
+
+      console.log("Successfully submitted prompt:", {
         prompt,
         model,
-        ratio,
         imageCount,
       });
     } catch (error) {
       console.error("Error in form submission:", error);
-    } finally {
+      setError("Something went wrong. Please try again.");
       setIsSubmitting(false);
     }
   }
@@ -148,12 +165,11 @@ export default function Page() {
   function clearPrompt() {
     setPrompt("");
   }
-  
-  // Function to download an image
-  const downloadImage = (imageUrl, index) => {
-    const link = document.createElement('a');
+
+  const downloadImage = (imageUrl, timestamp) => {
+    const link = document.createElement("a");
     link.href = imageUrl;
-    link.download = `generated-image-${index}.png`;
+    link.download = `generated-image-${timestamp}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -190,6 +206,12 @@ export default function Page() {
             </h1>
           </div>
 
+          {!isAuthenticated && (
+            <div className="bg-amber-50 border border-amber-200 text-amber-700 px-4 py-3 rounded-lg">
+              Please sign in to generate images
+            </div>
+          )}
+
           <div className="relative">
             <textarea
               value={prompt}
@@ -220,32 +242,37 @@ export default function Page() {
 
           <div className="flex-grow flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
             <select
-              value={model}
-              onChange={(event) => setModel(event.target.value)}
+              disabled={!modelsLoaded}
+              value={model.url}
+              onChange={(event) => {
+                const selectedModel = models.find(
+                  (m) => m.api_url === event.target.value
+                );
+                if (selectedModel) {
+                  setModel({
+                    name: selectedModel.name,
+                    url: selectedModel.api_url,
+                  });
+                }
+              }}
               className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:border-violet-400 focus:outline-none transition"
             >
-              <option value="">Select AI Model</option>
-              {models.map((model) => (
-                <option key={nanoid()} value={model.link}>
-                  {model.name}
-                </option>
-              ))}
+              {!modelsLoaded ? (
+                <option>Loading models...</option>
+              ) : (
+                <>
+                  <option value="">Select AI Model</option>
+                  {models.map((modelOption) => (
+                    <option key={nanoid(10)} value={modelOption.api_url}>
+                      {modelOption.name}
+                    </option>
+                  ))}
+                </>
+              )}
             </select>
-
-            <select
-              value={ratio}
-              onChange={(event) => setRatio(event.target.value)}
-              className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:border-violet-400 focus:outline-none transition"
-            >
-              <option value="">Aspect Ratio</option>
-              <option value="Square (1:1)">Square (1:1)</option>
-              <option value="Landscape (16:9)">Landscape (16:9)</option>
-              <option value="Portrait (9:16)">Portrait (9:16)</option>
-            </select>
-
             <select
               value={imageCount}
-              onChange={(event) => setImageCount(event.target.value)}
+              onChange={(event) => setImageCount(Number(event.target.value))}
               className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:border-violet-400 focus:outline-none transition"
             >
               <option value="1">1 Image</option>
@@ -256,21 +283,9 @@ export default function Page() {
 
             <button
               type="submit"
-              disabled={
-                isSubmitting ||
-                imageCount === "" ||
-                ratio === "" ||
-                model === "" ||
-                prompt === "" ||
-                !session?.user?.id
-              }
+              disabled={!isFormValid || isSubmitting}
               className={`${
-                isSubmitting ||
-                imageCount === "" ||
-                ratio === "" ||
-                model === "" ||
-                prompt === "" ||
-                !session?.user?.id
+                !isFormValid || isSubmitting
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#653bfc] cursor-pointer hover:bg-[#5933e8]"
               } px-5 border border-transparent rounded-[5px] text-white font-semibold flex items-center justify-center transition-colors`}
@@ -278,9 +293,54 @@ export default function Page() {
               {isSubmitting ? "Generating..." : "Generate"}
             </button>
           </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+              {error}
+            </div>
+          )}
         </form>
 
-        {tabImage.length === 0 ? (
+        {isSubmitting ? (
+          <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px]">
+            <div className="flex flex-col items-center gap-3">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#653bfc]"></div>
+              <p className="font-semibold text-gray-800">
+                Generating your{" "}
+                {imageCount > 1 ? `${imageCount} images` : "image"}...
+              </p>
+            </div>
+          </div>
+        ) : generatedImages.length > 0 ? (
+          <div className={`grid ${getGridClasses()} gap-4 w-full`}>
+            {generatedImages.map((imageUrl, index) => (
+              <div
+                key={index}
+                className="flex flex-col gap-2 bg-gray-50 rounded-lg p-3 overflow-hidden"
+              >
+                <div className="relative group">
+                  <img
+                    src={imageUrl}
+                    alt={`Generated image ${index + 1}`}
+                    className={`${getImageClasses()} object-cover rounded-lg shadow-sm`}
+                  />
+                  <div className="absolute bottom-2 right-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => downloadImage(imageUrl, Date.now())}
+                      className="p-2 rounded-full bg-white hover:bg-purple-600 hover:text-white shadow-md transition-colors duration-300"
+                      title="Download image"
+                    >
+                      <Download size={20} />
+                    </button>
+                  </div>
+                </div>
+                <p className="text-[17px] text-gray-700 font-semibold line-clamp-2 h-10 overflow-hidden">
+                  {prompt || "Generated image"}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
           <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px]">
             <div className="flex flex-col items-center gap-3">
               <Images size={40} color="#653bfc" strokeWidth={1.5} />
@@ -288,37 +348,10 @@ export default function Page() {
                 No images generated yet...
               </p>
               <p className="text-gray-600 text-sm max-w-md text-center">
-                Select a model, aspect ratio, and enter a prompt to create your AI-generated images.
+                Select a model and enter a prompt to create your AI-generated
+                {imageCount > 1 ? ` ${imageCount} images` : " image"}.
               </p>
             </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-4">
-            {tabImage.map((image, index) => (
-              <div key={image.id} className="relative group">
-                <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-                  <div className="aspect-square relative">
-                    <img
-                      src={image.url}
-                      alt={`Generated image ${index + 1}`}
-                      className="object-cover w-full h-full rounded-t-lg"
-                    />
-                  </div>
-                  <div className="p-2 flex justify-between items-center">
-                    <div className="text-xs text-gray-600 truncate max-w-[70%]">
-                      {prompt.substring(0, 20)}{prompt.length > 20 ? "..." : ""}
-                    </div>
-                    <button
-                      onClick={() => downloadImage(image.url, index + 1)}
-                      className="p-1 rounded-full bg-gray-100 hover:bg-[#653bfc] hover:text-white transition-colors"
-                      title="Download image"
-                    >
-                      <Download size={14} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         )}
       </main>

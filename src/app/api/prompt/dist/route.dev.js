@@ -16,7 +16,7 @@ var _users = _interopRequireDefault(require("@/lib/models/users"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var POST = function POST(request) {
-  var _ref, content, imageCount, model, ratio, userId, userExits, newPrompt;
+  var _ref, content, model, userId, userExits, newPrompt;
 
   return regeneratorRuntime.async(function POST$(_context) {
     while (1) {
@@ -33,13 +33,11 @@ var POST = function POST(request) {
         case 5:
           _ref = _context.sent;
           content = _ref.content;
-          imageCount = _ref.imageCount;
           model = _ref.model;
-          ratio = _ref.ratio;
           userId = _ref.userId;
 
-          if (!(!content || !imageCount || !model || !ratio || !userId)) {
-            _context.next = 13;
+          if (!(!content || !model || !userId)) {
+            _context.next = 11;
             break;
           }
 
@@ -49,15 +47,15 @@ var POST = function POST(request) {
             status: 400
           }));
 
-        case 13:
-          _context.next = 15;
+        case 11:
+          _context.next = 13;
           return regeneratorRuntime.awrap(_users["default"].findById(userId));
 
-        case 15:
+        case 13:
           userExits = _context.sent;
 
           if (userExits) {
-            _context.next = 18;
+            _context.next = 16;
             break;
           }
 
@@ -67,17 +65,15 @@ var POST = function POST(request) {
             status: 404
           }));
 
-        case 18:
-          _context.next = 20;
+        case 16:
+          _context.next = 18;
           return regeneratorRuntime.awrap(_prompts["default"].create({
             content: content,
-            imageCount: imageCount,
             model: model,
-            ratio: ratio,
             userId: userId
           }));
 
-        case 20:
+        case 18:
           newPrompt = _context.sent;
           return _context.abrupt("return", _server.NextResponse.json({
             message: 'Prompt created successfully',
@@ -86,8 +82,8 @@ var POST = function POST(request) {
             status: 201
           }));
 
-        case 24:
-          _context.prev = 24;
+        case 22:
+          _context.prev = 22;
           _context.t0 = _context["catch"](0);
           console.error("Error creating prompt:", _context.t0);
           return _context.abrupt("return", _server.NextResponse.json({
@@ -96,12 +92,12 @@ var POST = function POST(request) {
             status: 500
           }));
 
-        case 28:
+        case 26:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 24]]);
+  }, null, null, [[0, 22]]);
 };
 
 exports.POST = POST;

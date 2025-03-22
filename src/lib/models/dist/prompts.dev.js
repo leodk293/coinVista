@@ -18,15 +18,7 @@ var promptSchema = new _mongoose.Schema({
     type: String,
     required: true
   },
-  imageCount: {
-    type: Number,
-    "default": 1
-  },
   model: {
-    type: String,
-    required: true
-  },
-  ratio: {
     type: String,
     required: true
   },

@@ -11,7 +11,8 @@
   "dependencies": {
     "@auth/core": "^0.38.0",
     "@auth/mongodb-adapter": "^3.8.0",
-    "@huggingface/inference": "^3.5.2",
+    "@huggingface/agents": "^0.0.5",
+    "@huggingface/inference": "^3.6.1",
     "lucide-react": "^0.482.0",
     "mongodb": "^6.14.2",
     "mongoose": "^8.12.1",
@@ -24,7 +25,8 @@
     "react-pro-sidebar": "^1.1.0",
     "react-simple-typewriter": "^5.0.1",
     "swr": "^2.3.3",
-    "toastify": "^2.0.1"
+    "toastify": "^2.0.1",
+    "url": "^0.11.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -6,9 +6,9 @@ import User from "@/lib/models/users";
 export const POST = async (request) => {
     try {
         await connectMongoDB();
-        const { content, imageCount, model, ratio, userId } = await request.json();
+        const { content, model, userId } = await request.json();
 
-        if (!content || !imageCount || !model || !ratio || !userId) {
+        if (!content || !model || !userId) {
             return NextResponse.json(
                 { message: "Some infos are missing" },
                 { status: 400 }
@@ -25,9 +25,7 @@ export const POST = async (request) => {
 
         const newPrompt = await Prompt.create({
             content,
-            imageCount,
             model,
-            ratio,
             userId
         });
 
@@ -100,13 +98,6 @@ export const DELETE = async (request) => {
                 { status: 404 }
             );
         }
-
-        /*if (post.author.toString() !== userId) {
-            return NextResponse.json(
-                { message: "Unauthorized: Only the owner can delete this post" },
-                { status: 403 }
-            );
-        }*/
 
         await Prompt.findByIdAndDelete(id);
 

@@ -31,6 +31,21 @@ export default function Page() {
       setPromptHistory({ error: true, data: [], loading: false });
     }
   }
+
+  async function handleDelete(id, userId) {
+    try {
+      const response = await fetch(`api/prompt?id=${id}&userId=${userId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      await fetchHistoryPrompt();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
   useEffect(() => {
     fetchHistoryPrompt();
   }, [session?.user?.id]);
@@ -45,7 +60,7 @@ export default function Page() {
           <p className="text-xl font-semibold text-red-800">
             Something went wrong
           </p>
-        ) : (
+        ) : promptHistory.data.length > 0 ? (
           <ul className=" flex flex-col gap-4">
             {promptHistory.data.map((prompt) => (
               <li
@@ -56,29 +71,36 @@ export default function Page() {
                   <p className=" text-[17px] text-gray-700 break-words">
                     {prompt.content}
                   </p>
-                  <button className="opacity-0 cursor-pointer group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all">
+                  <button
+                    onClick={() => handleDelete(prompt._id, session?.user?.id)}
+                    className="opacity-0 cursor-pointer group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all"
+                  >
                     <Trash2 size={16} />
                   </button>
                 </div>
-                <div className="mt-2 flex justify-between text-xs text-gray-500">
-                  <span>{prompt.model}</span>
+                <div className="mt-2 font-semibold flex justify-between text-xs text-gray-500">
+                  <span>Model : {prompt.model}</span>
                   <span>
                     {new Date(
                       prompt.createdAt || Date.now()
                     ).toLocaleDateString()}
                   </span>
                 </div>
-                <div className="mt-1 flex gap-1 flex-wrap">
+                {/* <div className="mt-1 flex gap-1 flex-wrap">
                   <span className="px-2 py-1 bg-violet-100 text-violet-800 rounded text-xs">
                     {prompt.ratio}
                   </span>
                   <span className="px-2 py-1 bg-violet-100 text-violet-800 rounded text-xs">
                     {prompt.imageCount} image(s)
                   </span>
-                </div>
+                </div> */}
               </li>
             ))}
           </ul>
+        ) : (
+          <p className=" mt-10 text-center italic text-gray-500">
+            No prompts found. 
+          </p>
         )}
       </div>
     </>

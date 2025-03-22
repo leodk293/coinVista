@@ -5,29 +5,20 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var models = [{
-  name: "Stable Diffusion Base",
-  link: "hf-inference/models/stabilityai/stable-diffusion-2-1-base"
+  name: "Black-forest FLUX.1 Dev",
+  api_url: "black-forest-labs/FLUX.1-dev"
 }, {
-  name: "Stable Diffusion V1-5",
-  link: "hf-inference/models/stable-diffusion-v1-5/stable-diffusion-v1-5"
+  name: "Black-forest FLUX.1-schnell",
+  api_url: "black-forest-labs/FLUX.1-schnell"
 }, {
-  name: "Realistic Vision V5.1",
-  link: "hf-inference/models/SG161222/Realistic_Vision_V5.1_noVAE"
+  name: "Shakker-Labs FLUX.1-dev-LoRA-Vector-Journey",
+  api_url: "Shakker-Labs/FLUX.1-dev-LoRA-Vector-Journey"
 }, {
-  name: "Dreamlike Diffusion",
-  link: "hf-inference/models/dreamlike-art/dreamlike-diffusion-1.0"
+  name: "DALLE-3 XL V2",
+  api_url: "ehristoforu/dalle-3-xl-v2"
 }, {
-  name: "Flux.1 Schnell",
-  link: "nebius/v1/images/generations"
-}, {
-  name: "Flux Super Realism Lora",
-  link: "hf-inference/models/black-forest-labs/FLUX.1-dev"
-}, {
-  name: "Prompt Hero Openjourney",
-  link: "hf-inference/models/prompthero/openjourney-v4"
-}, {
-  name: "Jovie Anime",
-  link: "hf-inference/models/black-forest-labs/FLUX.1-dev"
+  name: "Stabilityai Stable Diffusion XL Base-1.0",
+  api_url: "stabilityai/stable-diffusion-xl-base-1.0"
 }];
 var _default = models;
 exports["default"] = _default;
