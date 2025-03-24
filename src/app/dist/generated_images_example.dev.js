@@ -35,6 +35,32 @@ var _exple14 = _interopRequireDefault(require("./assets/exple-14.png"));
 
 var _exple15 = _interopRequireDefault(require("./assets/exple-15.png"));
 
+var _exple16 = _interopRequireDefault(require("./assets/exple-16.png"));
+
+var _exple17 = _interopRequireDefault(require("./assets/exple-17.png"));
+
+var _exple18 = _interopRequireDefault(require("./assets/exple-18.png"));
+
+var _exple19 = _interopRequireDefault(require("./assets/exple-19.png"));
+
+var _exple20 = _interopRequireDefault(require("./assets/exple-20.png"));
+
+var _exple21 = _interopRequireDefault(require("./assets/exple-21.png"));
+
+var _exple22 = _interopRequireDefault(require("./assets/exple-22.png"));
+
+var _exple23 = _interopRequireDefault(require("./assets/exple-23.png"));
+
+var _exple24 = _interopRequireDefault(require("./assets/exple-24.png"));
+
+var _exple25 = _interopRequireDefault(require("./assets/exple-25.png"));
+
+var _exple26 = _interopRequireDefault(require("./assets/exple-26.png"));
+
+var _exple27 = _interopRequireDefault(require("./assets/exple-27.png"));
+
+var _exple28 = _interopRequireDefault(require("./assets/exple-28.png"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var imagesExamples = [{
@@ -82,6 +108,45 @@ var imagesExamples = [{
 }, {
   src: _exple15["default"],
   prompt: "A golden retriever wearing a superhero cape"
+}, {
+  src: _exple16["default"],
+  prompt: "A dinosaur running through a forest with a robotic dog"
+}, {
+  src: _exple17["default"],
+  prompt: "A dragon flying through a forest with a talking tree"
+}, {
+  src: _exple18["default"],
+  prompt: "A dragon flying through a forest with a talking tree"
+}, {
+  src: _exple19["default"],
+  prompt: "Iron man talking with Elon Musk on the roof of a skycreaper"
+}, {
+  src: _exple20["default"],
+  prompt: "A medieval knight playing games"
+}, {
+  src: _exple21["default"],
+  prompt: "A penguin DJ at a beach party"
+}, {
+  src: _exple22["default"],
+  prompt: "A penguin DJ at a beach party"
+}, {
+  src: _exple23["default"],
+  prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+}, {
+  src: _exple24["default"],
+  prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+}, {
+  src: _exple25["default"],
+  prompt: "A tiny hamster piloting a giant mech"
+}, {
+  src: _exple26["default"],
+  prompt: "A giant turtle eating a burger at a fast-food restaurant"
+}, {
+  src: _exple27["default"],
+  prompt: "A human colony installed on Mars"
+}, {
+  src: _exple28["default"],
+  prompt: "A giraffe driving a sports car"
 }];
 var _default = imagesExamples;
 exports["default"] = _default;

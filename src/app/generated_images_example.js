@@ -13,6 +13,19 @@ import exple12 from './assets/exple-12.png';
 import exple13 from './assets/exple-13.png';
 import exple14 from './assets/exple-14.png';
 import exple15 from './assets/exple-15.png';
+import exple16 from './assets/exple-16.png';
+import exple17 from './assets/exple-17.png';
+import exple18 from './assets/exple-18.png';
+import exple19 from './assets/exple-19.png';
+import exple20 from './assets/exple-20.png';
+import exple21 from './assets/exple-21.png';
+import exple22 from './assets/exple-22.png';
+import exple23 from './assets/exple-23.png';
+import exple24 from './assets/exple-24.png';
+import exple25 from './assets/exple-25.png';
+import exple26 from './assets/exple-26.png';
+import exple27 from './assets/exple-27.png';
+import exple28 from './assets/exple-28.png';
 
 const imagesExamples = [
     {
@@ -76,6 +89,58 @@ const imagesExamples = [
         src: exple15,
         prompt: "A golden retriever wearing a superhero cape"
     },
+    {
+        src: exple16,
+        prompt: "A dinosaur running through a forest with a robotic dog"
+    },
+    {
+        src: exple17,
+        prompt: "A dragon flying through a forest with a talking tree"
+    },
+    {
+        src: exple18,
+        prompt: "A dragon flying through a forest with a talking tree"
+    },
+    {
+        src: exple19,
+        prompt: "Iron man talking with Elon Musk on the roof of a skycreaper"
+    },
+    {
+        src: exple20,
+        prompt: "A medieval knight playing games"
+    },
+    {
+        src: exple21,
+        prompt: "A penguin DJ at a beach party"
+    },
+    {
+        src: exple22,
+        prompt: "A penguin DJ at a beach party"
+    },
+    {
+        src: exple23,
+        prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+    },
+    {
+        src: exple24,
+        prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+    },
+    {
+        src: exple25,
+        prompt: "A tiny hamster piloting a giant mech"
+    },
+    {
+        src: exple26,
+        prompt: "A giant turtle eating a burger at a fast-food restaurant"
+    },
+    {
+        src: exple27,
+        prompt: "A human colony installed on Mars"
+    },
+    {
+        src: exple28,
+        prompt: "A giraffe driving a sports car"
+    }
 ];
 
 export default imagesExamples;

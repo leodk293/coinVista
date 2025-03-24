@@ -180,14 +180,24 @@ export default function Page() {
       <HistoryBtn />
       <main className="flex flex-col gap-4 mx-auto max-w-4xl">
         <div className="text-center mt-10">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold text-black">
             <Typewriter
-              words={[`Welcome ${session?.user?.name}`]}
+              words={[`Welcome`]}
               loop={1}
-              cursor
-              cursorStyle="/"
               typeSpeed={55}
             />
+            {" "}
+            <span className="bg-gradient-to-r bg-clip-text text-transparent from-blue-500 to-purple-600">
+              {session?.user?.name && (
+                <Typewriter
+                  words={[`${session?.user?.name}`]}
+                  loop={1}
+                  cursor
+                  cursorStyle="/"
+                  typeSpeed={55}
+                />
+              )}
+            </span>
           </h1>
           <p className="text-gray-600 mt-2">
             What would you like to create today?
@@ -331,14 +341,14 @@ export default function Page() {
                   <div className="absolute bottom-2 right-2 opacity-80 group-hover:opacity-100 transition-opacity">
                     <button
                       onClick={() => downloadImage(imageUrl, Date.now())}
-                      className="p-2 rounded-full bg-white hover:bg-purple-600 hover:text-white shadow-md transition-colors duration-300"
+                      className="p-2 cursor-pointer rounded-full bg-white hover:bg-purple-600 hover:text-white shadow-md transition-colors duration-300"
                       title="Download image"
                     >
                       <Download size={20} />
                     </button>
                   </div>
                 </div>
-                <p className="text-[17px] text-gray-700 font-semibold line-clamp-2 h-10 overflow-hidden">
+                <p className="text-[14px] text-gray-700 font-semibold line-clamp-2 h-10 overflow-hidden">
                   {prompt || "Generated image"}
                 </p>
               </div>

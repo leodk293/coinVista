@@ -47,7 +47,7 @@ export default function Footer() {
       </div>
 
       <span className=" w-[95%] self-center h-[1px] bg-gray-400" />
-      <p className=" font-bold italic text-center">© {currentYear} AI IMAGE CREATOR. All rights reserved.</p>
+      <p className=" font-bold italic text-center">© {currentYear} AI-IMAGE-CREATOR. All rights reserved.</p>
     </footer>
   );
 }
