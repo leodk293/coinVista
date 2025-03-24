@@ -2,12 +2,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import Nav from "../components/Nav/Nav";
-import Loader from "../components/loader/Loader";
+import Loader from "@/app/components/loader/Loader";
 import { Trash2 } from "lucide-react";
 
-
-export default function Page() {
+export default function HistoryPage() {
   const { data: session } = useSession();
   const [promptHistory, setPromptHistory] = useState({
     error: false,
@@ -34,7 +32,7 @@ export default function Page() {
 
   async function handleDelete(id, userId) {
     try {
-      const response = await fetch(`api/prompt?id=${id}&userId=${userId}`, {
+      const response = await fetch(`/api/prompt?id=${id}&userId=${userId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -50,43 +48,41 @@ export default function Page() {
     fetchHistoryPrompt();
   }, [session?.user?.id]);
   return (
-    <>
-      <Nav />
-      <div className="flex mt-[60px] flex-col gap-5 mx-auto max-w-4xl px-3 md:px-0">
-        <h1 className=" font-bold text-2xl md:text-3xl">Your Prompt History</h1>
-        {promptHistory.loading ? (
-          <Loader />
-        ) : promptHistory.error ? (
-          <p className="text-xl font-semibold text-red-800">
-            Something went wrong
-          </p>
-        ) : promptHistory.data.length > 0 ? (
-          <ul className=" flex flex-col gap-4">
-            {promptHistory.data.map((prompt) => (
-              <li
-                key={prompt._id}
-                className="p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-violet-400 hover:bg-violet-50 cursor-pointer transition-all group"
-              >
-                <div className="flex justify-between items-start">
-                  <p className=" text-[17px] text-gray-700 break-words">
-                    {prompt.content}
-                  </p>
-                  <button
-                    onClick={() => handleDelete(prompt._id, session?.user?.id)}
-                    className="opacity-0 cursor-pointer group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all"
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
-                <div className="mt-2 font-semibold flex justify-between text-xs text-gray-500">
-                  <span>Model : {prompt.model}</span>
-                  <span>
-                    {new Date(
-                      prompt.createdAt || Date.now()
-                    ).toLocaleDateString()}
-                  </span>
-                </div>
-                {/* <div className="mt-1 flex gap-1 flex-wrap">
+    <div className="flex mt-[60px] flex-col gap-5 mx-auto max-w-4xl px-3 md:px-0">
+      <h1 className=" font-bold text-2xl md:text-3xl">Your Prompt History</h1>
+      {promptHistory.loading ? (
+        <Loader />
+      ) : promptHistory.error ? (
+        <p className="text-xl font-semibold text-red-800">
+          Something went wrong
+        </p>
+      ) : promptHistory.data.length > 0 ? (
+        <ul className=" flex flex-col gap-4">
+          {promptHistory.data.map((prompt) => (
+            <li
+              key={prompt._id}
+              className="p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-violet-400 hover:bg-violet-50 cursor-pointer transition-all group"
+            >
+              <div className="flex justify-between items-start">
+                <p className=" text-[17px] text-gray-700 break-words">
+                  {prompt.content}
+                </p>
+                <button
+                  onClick={() => handleDelete(prompt._id, session?.user?.id)}
+                  className="opacity-0 cursor-pointer group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+              <div className="mt-2 font-semibold flex justify-between text-xs text-gray-500">
+                <span>Model : {prompt.model}</span>
+                <span>
+                  {new Date(
+                    prompt.createdAt || Date.now()
+                  ).toLocaleDateString()}
+                </span>
+              </div>
+              {/* <div className="mt-1 flex gap-1 flex-wrap">
                   <span className="px-2 py-1 bg-violet-100 text-violet-800 rounded text-xs">
                     {prompt.ratio}
                   </span>
@@ -94,15 +90,14 @@ export default function Page() {
                     {prompt.imageCount} image(s)
                   </span>
                 </div> */}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className=" mt-10 text-center italic text-gray-500">
-            No prompts found. 
-          </p>
-        )}
-      </div>
-    </>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className=" mt-10 text-center italic text-xl font-bold text-gray-500 md:h-[10rem]">
+          No prompts found.
+        </p>
+      )}
+    </div>
   );
 }

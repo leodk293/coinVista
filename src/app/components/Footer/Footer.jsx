@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="flex flex-wrap justify-start gap-[80px] md:justify-evenly md:gap-0">
         <div className=" flex flex-col gap-3">
           <div className=" self-start">
-          <Logo />
+            <Logo />
           </div>
           <p className=" text-gray-600 font-semibold">
             Express your imaginations and creativity by generating some amazing
@@ -22,10 +22,15 @@ export default function Footer() {
           <h3 className=" text-xl font-bold">Support</h3>
           <ul className=" text-gray-600 font-semibold flex flex-col gap-1">
             <li>
-              <Link href={"/"}>FAQ</Link>
+              <Link href={"/home/contact"}>Contact Us</Link>
             </li>
             <li>
-              <Link href={"/"}>Terms of Use and Privacy Policy</Link>
+              <Link href={"/FAQ"}>FAQ</Link>
+            </li>
+            <li>
+              <Link href={"/terms-of-use-and-privacy-policy"}>
+                Terms of Use and Privacy Policy
+              </Link>
             </li>
           </ul>
         </div>
@@ -47,7 +52,9 @@ export default function Footer() {
       </div>
 
       <span className=" w-[95%] self-center h-[1px] bg-gray-400" />
-      <p className=" font-bold italic text-center">© {currentYear} AI-IMAGE-CREATOR. All rights reserved.</p>
+      <p className=" font-bold italic text-center">
+        © {currentYear} AI-IMAGE-CREATOR. All rights reserved.
+      </p>
     </footer>
   );
 }

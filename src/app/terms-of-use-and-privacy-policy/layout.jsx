@@ -1,9 +1,9 @@
 import React from "react";
 
 export const metadata = {
-  title: "Dashboard | AI-IMAGE-CREATOR✨",
+  title: "Terms of use and privacy policy | AI-IMAGE-CREATOR✨",
 }
 
 export default function layout({ children }) {
-  return <div>{children}</div>;
+  return <>{children}</>;
 }

@@ -1,9 +1,9 @@
 import React from "react";
 
 export const metadata = {
-  title: "Dashboard | AI-IMAGE-CREATOR✨",
-}
+    title: "Contact | AI-IMAGE-CREATOR✨",
+  }
 
 export default function layout({ children }) {
-  return <div>{children}</div>;
+  return <>{children}</>;
 }

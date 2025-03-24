@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import googleLogo from "../assets/google-logo.png";
-import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 
 const SignUp = () => {
@@ -12,7 +11,7 @@ const SignUp = () => {
   async function handleSignin() {
     try {
       await signIn("google", {
-        callbackUrl: "/ai-image-creator",
+        callbackUrl: "/home",
       });
     } catch (error) {
       console.error("Error signing in with Google:", error);
@@ -21,10 +20,10 @@ const SignUp = () => {
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
-      {/* Left Content Section */}
+      
       <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-16">
         <div className="max-w-md mx-auto">
-          {/* Logo */}
+          
           <div className="mb-8">
             <div className="h-10 w-10 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg flex items-center justify-center">
               <svg
@@ -68,14 +67,14 @@ const SignUp = () => {
             <p className="text-center text-sm text-gray-500 mt-6">
               By signing in, you agree to our{" "}
               <Link
-                href="#"
+                href="/terms-of-use-and-privacy-policy#terms-of-use"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
                 Terms of Service
               </Link>{" "}
               and{" "}
               <Link
-                href="#"
+                href="/terms-of-use-and-privacy-policy#privacy-policy"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
                 Privacy Policy

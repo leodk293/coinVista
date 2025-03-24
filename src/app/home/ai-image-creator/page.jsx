@@ -8,8 +8,9 @@ import { nanoid } from "nanoid";
 import HistoryBtn from "@/app/components/HistoryBtn";
 import examplePrompts from "@/app/prompt";
 import { Typewriter } from "react-simple-typewriter";
+import Link from "next/link";
 
-export default function Page() {
+export default function AiGeneratorPage() {
   const { data: session } = useSession();
   const isAuthenticated = !!session?.user?.id;
 
@@ -213,7 +214,7 @@ export default function Page() {
               <PencilRuler size={32} color="#653bfc" strokeWidth={1.75} />
             </div>
             <h1 className="text-gray-50 text-2xl font-bold self-center">
-              AI-IMAGE-CREATOR
+              AI-IMAGE-CREATOR✨
             </h1>
           </div>
 
@@ -311,8 +312,8 @@ export default function Page() {
             </div>
           )}
         </form>
-        <p className=" text-gray-400 italic text-[14px]">
-          No that an error can be occurred generating images
+        <p className=" text-gray-400 font-normal text-center italic text-[14px]">
+          Note that some error can be occurred generating images. Check important info.
         </p>
 
         {isSubmitting ? (
@@ -368,6 +369,8 @@ export default function Page() {
             </div>
           </div>
         )}
+
+        <p className=" text-gray-500 font-bold mt-10">Tell us what you think about your images! Leave a <Link className="text-blue-500 underline underline-offset-2" href={'/'}>comment</Link> to share your feedback.</p>
       </main>
     </>
   );
