@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HistoryBtn() {
   return (
-    <Link href="/home//your-history">
+    <Link className="z-50 relative" href="/home//your-history">
       <button className="fixed cursor-pointer left-1 top-12 flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md transition-colors duration-200 font-medium md:top-25 md:left-5">
         <svg
           xmlns="http://www.w3.org/2000/svg"

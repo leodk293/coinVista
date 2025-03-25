@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Loader from "@/app/components/loader/Loader";
 import { Trash2 } from "lucide-react";
+import { History } from "lucide-react";
 
 export default function HistoryPage() {
   const { data: session } = useSession();
@@ -49,7 +50,13 @@ export default function HistoryPage() {
   }, [session?.user?.id]);
   return (
     <div className="flex mt-[60px] flex-col gap-5 mx-auto max-w-4xl px-3 md:px-0">
-      <h1 className=" font-bold text-2xl md:text-3xl">Your Prompt History</h1>
+      <div className=" flex flex-col gap-2">
+        <h1 className=" flex flex-row gap-2 font-bold text-2xl md:text-3xl">
+          <History className=" self-center" size={30} color="#000000" strokeWidth={2.5} />
+          <span className=" self-center">Your Prompt History</span>
+        </h1>
+        <span className=" w-full h-[2px] bg-black" />
+      </div>
       {promptHistory.loading ? (
         <Loader />
       ) : promptHistory.error ? (
@@ -82,14 +89,6 @@ export default function HistoryPage() {
                   ).toLocaleDateString()}
                 </span>
               </div>
-              {/* <div className="mt-1 flex gap-1 flex-wrap">
-                  <span className="px-2 py-1 bg-violet-100 text-violet-800 rounded text-xs">
-                    {prompt.ratio}
-                  </span>
-                  <span className="px-2 py-1 bg-violet-100 text-violet-800 rounded text-xs">
-                    {prompt.imageCount} image(s)
-                  </span>
-                </div> */}
             </li>
           ))}
         </ul>

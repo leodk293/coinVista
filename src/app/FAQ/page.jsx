@@ -21,12 +21,12 @@ export default function FAQPage() {
     {
       question: "How do I report inappropriate content?",
       answer:
-        "If you come across any inappropriate content, please contact us immediately at [your email].",
+        "If you come across any inappropriate content, please contact us immediately at aboubatraore04@gmail.com.",
     },
     {
       question: "How can I contact support?",
       answer:
-        "You can reach our support team via email at [your email] or through our contact page.",
+        "You can reach our support team via email at aboubatraore04@gmail.com or through our contact page.",
     },
   ];
 

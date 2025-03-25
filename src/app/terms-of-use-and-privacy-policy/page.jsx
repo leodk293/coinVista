@@ -59,14 +59,8 @@ export default function TermsOfUsePageAndPrivacy() {
 
         <h2 className="mt-6 text-2xl font-bold text-gray-900">4. Contact Us</h2>
         <p className="mt-2">
-          For questions,{" "}
-          <Link
-            href="/"
-            className="text-blue-900 font-bold underline-offset-2 underline"
-          >
-            contact us
-          </Link>{" "}
-          at [your email].
+          For questions, contact us at{" "}
+          <span className=" font-bold">aboubatraore04@gmail.com</span>.
         </p>
       </section>
 
@@ -103,7 +97,10 @@ export default function TermsOfUsePageAndPrivacy() {
         </ul>
 
         <h2 className="mt-6 text-2xl font-bold text-gray-900">3. Contact Us</h2>
-        <p className="mt-2">For privacy concerns, email us at [your email].</p>
+        <p className="mt-2">
+          For privacy concerns, email us at{" "}
+          <span className=" font-bold">aboubatraore04@gmail.com</span>.
+        </p>
       </section>
     </main>
   );

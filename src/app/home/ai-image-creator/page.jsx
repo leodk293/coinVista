@@ -179,15 +179,10 @@ export default function AiGeneratorPage() {
   return (
     <>
       <HistoryBtn />
-      <main className="flex flex-col gap-4 mx-auto max-w-4xl">
+      <main className="flex flex-col z-[-5px] gap-4 mx-auto max-w-4xl">
         <div className="text-center mt-10">
           <h1 className="text-3xl font-bold text-black">
-            <Typewriter
-              words={[`Welcome`]}
-              loop={1}
-              typeSpeed={55}
-            />
-            {" "}
+            <Typewriter words={[`Welcome`]} loop={1} typeSpeed={55} />{" "}
             <span className="bg-gradient-to-r bg-clip-text text-transparent from-blue-500 to-purple-600">
               {session?.user?.name && (
                 <Typewriter
@@ -224,7 +219,7 @@ export default function AiGeneratorPage() {
             </div>
           )}
 
-          <div className="relative">
+          <div className=" relative">
             <textarea
               value={prompt}
               onChange={(event) => setPrompt(event.target.value)}
@@ -313,7 +308,8 @@ export default function AiGeneratorPage() {
           )}
         </form>
         <p className=" text-gray-400 font-normal text-center italic text-[14px]">
-          Note that some error can be occurred generating images. Check important info.
+          Note that some error can be occurred generating images. Check
+          important info.
         </p>
 
         {isSubmitting ? (
@@ -331,7 +327,7 @@ export default function AiGeneratorPage() {
             {generatedImages.map((imageUrl, index) => (
               <div
                 key={index}
-                className="flex flex-col gap-2 bg-gray-50 rounded-lg p-3 overflow-hidden"
+                className="flex flex-col gap-2 bg-gray-50 shadow rounded-lg p-3 overflow-hidden"
               >
                 <div className="relative group">
                   <img
@@ -349,9 +345,9 @@ export default function AiGeneratorPage() {
                     </button>
                   </div>
                 </div>
-                <p className="text-[14px] text-gray-700 font-semibold line-clamp-2 h-10 overflow-hidden">
+                {/* <p className="text-[14px] text-gray-700 font-semibold line-clamp-2 h-10 overflow-hidden">
                   {prompt || "Generated image"}
-                </p>
+                </p> */}
               </div>
             ))}
           </div>
@@ -370,7 +366,12 @@ export default function AiGeneratorPage() {
           </div>
         )}
 
-        <p className=" text-gray-500 font-bold mt-10">Tell us what you think about your images! Leave a <Link className="text-blue-500 underline underline-offset-2" href={'/'}>comment</Link> to share your feedback.</p>
+        <Link
+          href={"/home/feedback"}
+          className=" text-xl text-center underline underline-offset-8 text-indigo-950 font-bold mt-10"
+        >
+          Let us know your opinions ➡️
+        </Link>
       </main>
     </>
   );
