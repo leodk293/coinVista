@@ -22,6 +22,14 @@ var commentSchema = new _mongoose.Schema({
     type: _mongoose["default"].Schema.Types.ObjectId,
     ref: "User",
     required: true
+  },
+  userImage: {
+    type: String,
+    required: true
+  },
+  userName: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true

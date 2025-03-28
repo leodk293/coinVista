@@ -20,11 +20,18 @@ export default function AiGeneratorPage() {
   });
   const [prompt, setPrompt] = useState("");
   const [generatedImages, setGeneratedImages] = useState([]); // Array to store multiple images
-  const [imageCount, setImageCount] = useState(1); // Default to 1 image
+  const [imageCount, setImageCount] = useState(1); 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
+
+  const [storedImages, setStoredImages] = useState({
+    image1: "",
+    image2: "",
+    image3: "",
+    image4: ""
+  });
 
   useEffect(() => {
     if (models.length > 0) {

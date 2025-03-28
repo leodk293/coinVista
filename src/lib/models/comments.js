@@ -11,6 +11,14 @@ const commentSchema = new Schema(
             ref: "User",
             required: true
         },
+        userImage: {
+            type: String,
+            required: true
+        },
+        userName:{
+            type: String,
+            required: true
+        }
     },
     { timestamps: true }
 );
