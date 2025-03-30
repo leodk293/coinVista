@@ -10,7 +10,7 @@ import {
   MessageSquare,
   Clock,
   Download,
-  PlayCircle
+  PlayCircle,
 } from "lucide-react";
 import { Typewriter } from "react-simple-typewriter";
 
@@ -88,31 +88,32 @@ const HomePage = () => {
         </section>
 
         <div className="py-8 px-4 max-w-4xl mx-auto">
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md overflow-hidden">
-        <div className="p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <PlayCircle className="text-blue-600" size={24} />
-            <h2 className="text-2xl font-bold text-gray-800">Demo Video</h2>
-          </div>
-          
-          <p className="text-gray-600 mb-4">
-            Watch how our AI image generator works in this quick demonstration
-          </p>
-          
-          <div className="rounded-lg overflow-hidden shadow-lg aspect-video">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/-o2jwNWpqYg?si=uWe1cCCR8fYI38Il"
-              title="AI Image Generator Demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md overflow-hidden">
+            <div className="p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <PlayCircle className="text-blue-600" size={24} />
+                <h2 className="text-2xl font-bold text-gray-800">Demo Video</h2>
+              </div>
+
+              <p className="text-gray-600 mb-4">
+                Watch how our AI image generator works in this quick
+                demonstration
+              </p>
+
+              <div className="rounded-lg overflow-hidden shadow-lg aspect-video">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/oLE07DlINaY?si=AOJvrkgnLk2YNUUi"
+                  title="AI Image Generator Demo"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
         <Link
           href="/home/ai-image-creator"
@@ -123,7 +124,6 @@ const HomePage = () => {
         </Link>
       </section>
 
-      {/* Gallery Section */}
       <section className="mt-12">
         <div className="flex items-center justify-center gap-3 mb-10">
           <Sparkles className="text-yellow-500" size={24} />
@@ -133,7 +133,7 @@ const HomePage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {imagesExamples.map((image, index) => (
-            <Link key={nanoid(10)} href={`/image/${index}`}>
+            <Link target="_blank" key={nanoid(10)} href={`/image/${index}`}>
               <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg transition-all hover:shadow-xl">
                 <div className="aspect-square overflow-hidden">
                   <Image

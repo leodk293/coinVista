@@ -16,21 +16,17 @@ const ImagePage = ({ params }) => {
 
   const downloadImage = async (imageModule, timestamp) => {
     try {
-      // Fetch the image as a blob
       const response = await fetch(imageModule.src);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
 
-      // Create an invisible link element
       const link = document.createElement("a");
       link.href = url;
       link.download = `generated-image-${timestamp}.png`;
 
-      // Trigger the download
       document.body.appendChild(link);
       link.click();
 
-      // Cleanup
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
     } catch (error) {
@@ -54,9 +50,7 @@ const ImagePage = ({ params }) => {
         </div>
       </div>
 
-      {/* Main content */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-        {/* Image container - takes up 3/5 of space on large screens */}
         <div className="lg:col-span-3 bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
           <div className="relative aspect-square">
             <Image
@@ -71,31 +65,27 @@ const ImagePage = ({ params }) => {
         </div>
 
         <div className="lg:col-span-2 flex flex-col">
-          <div>
-            <h1 className="text-2xl font-bold mb-4">AI Generated Artwork</h1>
+          <h1 className="text-2xl font-bold mb-4">AI Generated Artwork</h1>
 
-            <div className="bg-gray-100 p-4 rounded-xl mb-6">
-              <h2 className="text-sm uppercase text-gray-500 mb-2 font-medium">
-                Prompt Used
-              </h2>
-              <p className="text-lg font-medium">{currentImage.prompt}</p>
-            </div>
+          <div className="bg-gray-50 border border-gray-700 p-4 rounded-xl mb-6">
+            <h2 className="text-sm uppercase text-gray-500 mb-2 font-bold">
+              Prompt Used
+            </h2>
+            <p className="text-lg font-medium">{currentImage.prompt}</p>
           </div>
 
-          <div className="flex flex-col gap-3">
-            <button
-              onClick={() => downloadImage(currentImage.src, Date.now())}
-              className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors"
-            >
-              <Download size={18} />
-              <span>Download Image</span>
-            </button>
+          <button
+            onClick={() => downloadImage(currentImage.src, Date.now())}
+            className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors"
+          >
+            <Download size={18} />
+            <span>Download Image</span>
+          </button>
 
-            <button className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors">
+          {/* <button className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors">
               <Share2 size={18} />
               <span>Share</span>
-            </button>
-          </div>
+            </button> */}
         </div>
       </div>
 

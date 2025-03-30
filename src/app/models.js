@@ -18,7 +18,10 @@ const models = [
     {
         name: "Stabilityai Stable Diffusion XL Base-1.0",
         api_url: "stabilityai/stable-diffusion-xl-base-1.0",
-
+    },
+    {
+        name: "Dreamlike-Art",
+        api_url: "dreamlike-art/dreamlike-photoreal-2.0",
     }
 
 ];

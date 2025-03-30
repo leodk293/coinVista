@@ -19,19 +19,12 @@ export default function AiGeneratorPage() {
     url: "",
   });
   const [prompt, setPrompt] = useState("");
-  const [generatedImages, setGeneratedImages] = useState([]); // Array to store multiple images
-  const [imageCount, setImageCount] = useState(1); 
+  const [generatedImages, setGeneratedImages] = useState([]);
+  const [imageCount, setImageCount] = useState(1);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [modelsLoaded, setModelsLoaded] = useState(false);
-
-  const [storedImages, setStoredImages] = useState({
-    image1: "",
-    image2: "",
-    image3: "",
-    image4: ""
-  });
 
   useEffect(() => {
     if (models.length > 0) {
@@ -78,7 +71,6 @@ export default function AiGeneratorPage() {
 
   async function generateImage(data, modelUrl) {
     try {
-      // Create an array of promises for generating multiple images
       const imagePromises = [];
 
       for (let i = 0; i < imageCount; i++) {
@@ -98,23 +90,21 @@ export default function AiGeneratorPage() {
         );
       }
 
-      // Wait for all image generation requests to complete
       const responses = await Promise.all(imagePromises);
 
-      // Process each response
       const imageUrls = [];
       for (const response of responses) {
         if (!response.ok) {
-          throw new Error(`Error generating image: ${response.statusText}`);
+          throw new Error(`Error generating image: ${response.status}`);
         }
         const result = await response.blob();
+        console.log(URL.createObjectURL(result));
         const imageUrl = URL.createObjectURL(result);
         imageUrls.push(imageUrl);
       }
 
-      console.log(`Generated ${imageUrls.length} images successfully`);
+      //console.log(`Generated ${imageUrls.length} images successfully`);
 
-      // Update the state with all generated images
       setGeneratedImages(imageUrls);
       setError(null);
     } catch (error) {
@@ -158,11 +148,11 @@ export default function AiGeneratorPage() {
 
       generateImage(prompt, model.url);
 
-      console.log("Successfully submitted prompt:", {
+      /*console.log("Successfully submitted prompt:", {
         prompt,
         model,
         imageCount,
-      });
+      });*/
     } catch (error) {
       console.error("Error in form submission:", error);
       setError("Something went wrong. Please try again.");

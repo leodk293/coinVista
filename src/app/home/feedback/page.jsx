@@ -4,7 +4,6 @@ import { MessageCircleMore } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Loader from "@/app/components/loader/Loader";
-import { useRouter } from "next/navigation";
 
 export default function FeedbackPage() {
   const { status, data: session } = useSession();
@@ -13,8 +12,8 @@ export default function FeedbackPage() {
     data: [],
     loading: false,
   });
+  const [isFocused, setIsFocused] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const router = useRouter();
 
   const addComment = async (e) => {
     e.preventDefault();
@@ -36,8 +35,9 @@ export default function FeedbackPage() {
       if (!res.ok) {
         throw new Error("Failed to add comment");
       }
-      //router.push("/home/feedback");
+
       setCommentText("");
+      setIsFocused(false);
       await getComments();
     } catch (error) {
       console.error(error);
@@ -92,53 +92,79 @@ export default function FeedbackPage() {
   }
 
   return (
-    <main className="flex mt-[60px] flex-col gap-5 mx-auto max-w-4xl px-3 md:px-0">
-      <div className=" flex flex-col gap-2">
-        <h1 className=" flex flex-row gap-2 font-bold text-2xl md:text-3xl">
-          <MessageCircleMore
-            className=" self-center"
-            size={30}
-            color="#000000"
-            strokeWidth={2.5}
-          />
-          <span className=" self-center">Feedback</span>
-        </h1>
-        <span className=" w-full h-[2px] bg-black" />
+    <main className="container max-w-4xl mx-auto pt-16 px-4 md:px-6">
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-2">
+          <MessageCircleMore size={28} className="text-gray-800" />
+          <h1 className="text-2xl md:text-3xl font-bold">Feedback</h1>
+        </div>
+        <div className="h-1 bg-gradient-to-r from-gray-800 to-gray-300 rounded-full" />
       </div>
 
-      <section className=" flex flex-col gap-5">
-        <h1 className=" text-2xl font-bold md:text-3xl">
+      <section className="space-y-8">
+        <h2 className="text-xl md:text-2xl font-semibold">
           {comments.data.length} Comment{comments.data.length !== 1 ? "s" : ""}
-        </h1>
+        </h2>
 
         {status === "authenticated" && (
-          <div className=" flex flex-row gap-3">
+          <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg">
             {session.user?.image ? (
               <Image
                 width={40}
                 height={40}
                 src={session.user.image}
                 alt={session.user.name || "User"}
-                className=" rounded-[50%]"
+                className="rounded-full self-center ring-2 ring-gray-200"
               />
             ) : (
-              <p>Loading...</p>
+              <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse" />
             )}
 
-            <form onSubmit={addComment} className=" w-full">
-              <input
-                required
-                type="text"
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                className="w-full outline-0 border-b border-b-black p-1 text-xl"
-                placeholder="Leave a comment..."
-              />
+            <form onSubmit={addComment} className="flex-1">
+              <div className="relative w-full">
+                <textarea
+                  required
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+                  onFocus={() => setIsFocused(true)}
+                  className={`w-full border outline-none font-semibold text-xl border-gray-300 rounded-lg resize-none bg-white p-3 transition-all ${
+                    isFocused ? "border-blue-500" : ""
+                  }`}
+                  placeholder="Leave a comment..."
+                  rows={isFocused ? 3 : 1}
+                />
+
+                {(isFocused || commentText.length > 0) && (
+                  <div className="flex justify-end gap-2 mt-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCommentText("");
+                        setIsFocused(false);
+                      }}
+                      className="py-2 px-4 rounded-full cursor-pointer font-medium text-sm text-gray-600 hover:bg-gray-100 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={commentText.trim().length === 0}
+                      className={`py-2 px-4 font-semibold cursor-pointer rounded-full text-sm transition-colors ${
+                        commentText.trim().length === 0
+                          ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                          : "bg-blue-500 text-white hover:bg-blue-600"
+                      }`}
+                    >
+                      Comment
+                    </button>
+                  </div>
+                )}
+              </div>
             </form>
           </div>
         )}
 
-        <section className=" flex flex-col gap-5 mt-5">
+        <section className=" flex flex-col gap-5 mt-10">
           {comments.error ? (
             <p className="text-xl mt-5 h-[5rem] font-bold text-red-900">
               Failed to load comments
@@ -171,7 +197,7 @@ export default function FeedbackPage() {
             ))
           ) : (
             <p className=" text-[17px] font-semibold md:h-[5rem]">
-              No comments yet, be the first
+              No comments yet, be the first...
             </p>
           )}
         </section>

@@ -64,23 +64,23 @@ var _exple28 = _interopRequireDefault(require("./assets/exple-28.png"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var imagesExamples = [{
+  src: _exple24["default"],
+  prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+}, {
+  src: _exple12["default"],
+  prompt: "Donald Trump eating the pets of people"
+}, {
   src: _exple["default"],
   prompt: "A cat holding a sign that says hello world"
-}, {
-  src: _exple2["default"],
-  prompt: "A cat holding a sign that says hello world"
-}, {
-  src: _exple3["default"],
-  prompt: "A cat holding a sign that says hello world"
-}, {
-  src: _exple4["default"],
-  prompt: "An astronaut riding a horse on Mars"
 }, {
   src: _exple5["default"],
   prompt: "A sorcerer doing magics in Times square"
 }, {
   src: _exple6["default"],
   prompt: "A panda wearing sunglasses and skateboarding"
+}, {
+  src: _exple4["default"],
+  prompt: "An astronaut riding a horse on Mars"
 }, {
   src: _exple7["default"],
   prompt: "A turtle swimming in a lake with a robotic fish"
@@ -97,25 +97,22 @@ var imagesExamples = [{
   src: _exple11["default"],
   prompt: "A dragon drinking his coffee in a cafe in 2D"
 }, {
-  src: _exple12["default"],
-  prompt: "A dragon drinking his coffee in a cafe in 2D"
-}, {
   src: _exple13["default"],
-  prompt: "A dragon drinking his coffee in a cafe in 3D"
-}, {
-  src: _exple14["default"],
   prompt: "A dragon drinking his coffee in a cafe in 3D"
 }, {
   src: _exple15["default"],
   prompt: "A golden retriever wearing a superhero cape"
 }, {
+  src: _exple14["default"],
+  prompt: "A dragon drinking his coffee in a cafe in 3D"
+}, {
+  src: _exple2["default"],
+  prompt: "A cat holding a sign that says hello world"
+}, {
   src: _exple16["default"],
   prompt: "A dinosaur running through a forest with a robotic dog"
 }, {
   src: _exple17["default"],
-  prompt: "A dragon flying through a forest with a talking tree"
-}, {
-  src: _exple18["default"],
   prompt: "A dragon flying through a forest with a talking tree"
 }, {
   src: _exple19["default"],
@@ -127,13 +124,13 @@ var imagesExamples = [{
   src: _exple21["default"],
   prompt: "A penguin DJ at a beach party"
 }, {
+  src: _exple18["default"],
+  prompt: "A dog holding a sign that says 'Hello world'"
+}, {
   src: _exple22["default"],
   prompt: "A penguin DJ at a beach party"
 }, {
   src: _exple23["default"],
-  prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
-}, {
-  src: _exple24["default"],
   prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
 }, {
   src: _exple25["default"],
@@ -144,6 +141,9 @@ var imagesExamples = [{
 }, {
   src: _exple27["default"],
   prompt: "A human colony installed on Mars"
+}, {
+  src: _exple3["default"],
+  prompt: "A cat holding a sign that says hello world"
 }, {
   src: _exple28["default"],
   prompt: "A giraffe driving a sports car"

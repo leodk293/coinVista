@@ -29,20 +29,17 @@ import exple28 from './assets/exple-28.png';
 
 const imagesExamples = [
     {
+        src: exple24,
+        prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+    },
+    {
+        src: exple12,
+        prompt: "Donald Trump eating the pets of people"
+    },
+
+    {
         src: exple1,
         prompt: "A cat holding a sign that says hello world"
-    },
-    {
-        src: exple2,
-        prompt: "A cat holding a sign that says hello world"
-    },
-    {
-        src: exple3,
-        prompt: "A cat holding a sign that says hello world"
-    },
-    {
-        src: exple4,
-        prompt: "An astronaut riding a horse on Mars"
     },
     {
         src: exple5,
@@ -52,6 +49,10 @@ const imagesExamples = [
     {
         src: exple6,
         prompt: "A panda wearing sunglasses and skateboarding"
+    },
+    {
+        src: exple4,
+        prompt: "An astronaut riding a horse on Mars"
     },
     {
         src: exple7,
@@ -73,16 +74,9 @@ const imagesExamples = [
         src: exple11,
         prompt: "A dragon drinking his coffee in a cafe in 2D"
     },
-    {
-        src: exple12,
-        prompt: "A dragon drinking his coffee in a cafe in 2D"
-    },
+
     {
         src: exple13,
-        prompt: "A dragon drinking his coffee in a cafe in 3D"
-    },
-    {
-        src: exple14,
         prompt: "A dragon drinking his coffee in a cafe in 3D"
     },
     {
@@ -90,15 +84,19 @@ const imagesExamples = [
         prompt: "A golden retriever wearing a superhero cape"
     },
     {
+        src: exple14,
+        prompt: "A dragon drinking his coffee in a cafe in 3D"
+    },
+    {
+        src: exple2,
+        prompt: "A cat holding a sign that says hello world"
+    },
+    {
         src: exple16,
         prompt: "A dinosaur running through a forest with a robotic dog"
     },
     {
         src: exple17,
-        prompt: "A dragon flying through a forest with a talking tree"
-    },
-    {
-        src: exple18,
         prompt: "A dragon flying through a forest with a talking tree"
     },
     {
@@ -114,15 +112,15 @@ const imagesExamples = [
         prompt: "A penguin DJ at a beach party"
     },
     {
+        src: exple18,
+        prompt: "A dog holding a sign that says 'Hello world'"
+    },
+    {
         src: exple22,
         prompt: "A penguin DJ at a beach party"
     },
     {
         src: exple23,
-        prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
-    },
-    {
-        src: exple24,
         prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
     },
     {
@@ -137,6 +135,11 @@ const imagesExamples = [
         src: exple27,
         prompt: "A human colony installed on Mars"
     },
+    {
+        src: exple3,
+        prompt: "A cat holding a sign that says hello world"
+    },
+
     {
         src: exple28,
         prompt: "A giraffe driving a sports car"

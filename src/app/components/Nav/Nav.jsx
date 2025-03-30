@@ -5,7 +5,7 @@ import Logo from "../logo/Logo";
 import Link from "next/link";
 import Image from "next/image";
 import { LogOut } from "lucide-react";
-import { Linkedin, Facebook } from "lucide-react";
+import { Linkedin, Facebook, Github } from "lucide-react";
 import { BsTwitterX } from "react-icons/bs";
 
 export default function Nav() {
@@ -24,22 +24,32 @@ export default function Nav() {
       </Link> */}
       <nav className=" self-center font-semibold text-xl flex flex-row gap-5">
         <Link
+          target="_blank"
           className=" border border-transparent p-2 bg-[#0077B5] rounded-[5px]"
-          href={"/"}
+          href={"https://www.linkedin.com/in/aboubacar-traore-495736252"}
         >
-          <Linkedin size={28} color="#ffffff" />
+          <Linkedin size={24} color="#ffffff" />
         </Link>
         <Link
+          target="_blank"
+          className=" border border-transparent p-2 bg-black rounded-[5px]"
+          href={"https://github.com/leodk293"}
+        >
+          <Github size={24} color="#ffffff" />
+        </Link>
+        <Link
+          target="_blank"
           className=" border border-transparent p-2 bg-[#1877F2] rounded-[5px]"
-          href={"/"}
+          href={"https://www.facebook.com/profile.php?id=100092315485742"}
         >
-          <Facebook size={28} color="#ffffff" />
+          <Facebook size={24} color="#ffffff" />
         </Link>
         <Link
+          target="_blank"
           className=" text-white text-2xl border border-transparent p-2 bg-black rounded-[5px]"
-          href={"/"}
+          href={"https://x.com/Aboubac48530295"}
         >
-          <BsTwitterX size={28} />
+          <BsTwitterX size={24} />
         </Link>
       </nav>
 
