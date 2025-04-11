@@ -74,6 +74,15 @@ export default function Footer() {
                 Facebook
               </Link>
             </li>
+            <li>
+              <Link
+                className=" hover:underline"
+                target="_blank"
+                href={"https://www.youtube.com/@aboubacartraore5831"}
+              >
+                Youtube
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
