@@ -2,11 +2,9 @@
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import Logo from "../logo/Logo";
-import Link from "next/link";
 import Image from "next/image";
 import { LogOut } from "lucide-react";
-import { Linkedin, Facebook, Github, Youtube } from "lucide-react";
-import { BsTwitterX } from "react-icons/bs";
+import ThemeToggle from "../Theme-toggle";
 
 export default function Nav() {
   async function handleSignOut() {
@@ -14,53 +12,15 @@ export default function Nav() {
       callbackUrl: "/signin",
     });
   }
+
   const { status, data: session } = useSession();
+
   return (
-    <nav className=" border border-transparent py-4 w-full bg-white shadow flex flex-wrap justify-evenly gap-10 md:gap-0">
+    <nav className=" py-4 w-full z-50 bg-white shadow flex flex-wrap fixed justify-evenly dark:bg-black dark:text-white dark:border-b dark:border-b-gray-900 gap-10 md:gap-0">
       <Logo />
 
-      {/* <Link className="self-center" href={"/"}>
-        Contact Us
-      </Link> */}
-      <nav className=" self-center font-semibold text-xl flex flex-row gap-5">
-        <Link
-          target="_blank"
-          className=" border border-transparent p-2 bg-[#0077B5] rounded-full"
-          href={"https://www.linkedin.com/in/aboubacar-traore-495736252"}
-        >
-          <Linkedin size={24} color="#ffffff" />
-        </Link>
-        <Link
-          target="_blank"
-          className=" border border-transparent p-2 bg-black rounded-full"
-          href={"https://github.com/leodk293"}
-        >
-          <Github size={24} color="#ffffff" />
-        </Link>
-        <Link
-          target="_blank"
-          className=" border border-transparent p-2 bg-[#1877F2] rounded-full"
-          href={"https://www.facebook.com/profile.php?id=100092315485742"}
-        >
-          <Facebook size={24} color="#ffffff" />
-        </Link>
-        <Link
-          target="_blank"
-          className=" text-white text-2xl border border-transparent p-2 bg-black rounded-full"
-          href={"https://x.com/Aboubac48530295"}
-        >
-          <BsTwitterX size={24} />
-        </Link>
-        <Link
-          target="_blank"
-          className=" text-white text-2xl border border-transparent p-2 bg-red-700 rounded-full"
-          href={"https://www.youtube.com/@aboubacartraore5831"}
-        >
-          <Youtube size={24} />
-        </Link>
-      </nav>
-
       <div className=" self-center flex flex-wrap justify-center gap-3">
+        <ThemeToggle />
         <div className=" border border-gray-300 rounded-[50px] px-5 py-2 flex flex-row gap-1">
           {session?.user?.image ? (
             <Image

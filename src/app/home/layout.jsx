@@ -10,7 +10,7 @@ const layout = ({ children }) => {
   return (
     <>
       <Nav />
-      <div>{children}</div>
+      <div className=" pt-[250px] md:pt-[100px]">{children}</div>
       <Footer />
     </>
   );

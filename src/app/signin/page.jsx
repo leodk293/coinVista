@@ -42,10 +42,10 @@ const SignUp = () => {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-2 dark:text-white">
             Welcome to AI Image Generator
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-gray-600 mb-8 dark:text-gray-100">
             Sign in and start creating stunning AI-generated images instantly
           </p>
 
@@ -64,7 +64,7 @@ const SignUp = () => {
               <span className="font-medium">Sign in with Google</span>
             </button>
 
-            <p className="text-center text-sm text-gray-500 mt-6">
+            <p className="text-center text-sm text-gray-500 mt-6 dark:text-gray-200">
               By signing in, you agree to our{" "}
               <Link
                 href="/terms-of-use-and-privacy-policy#terms-of-use"

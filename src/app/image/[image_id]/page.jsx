@@ -39,13 +39,13 @@ const ImagePage = ({ params }) => {
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/home"
-          className="flex items-center gap-2 text-gray-700 hover:text-black transition-colors"
+          className="flex items-center gap-2 text-gray-700 dark:text-gray-400 hover:text-black transition-colors dark:hover:text-white"
         >
           <ArrowLeft size={20} />
           <span className="font-medium">Back to Gallery</span>
         </Link>
 
-        <div className="text-sm text-gray-500">
+        <div className="text-sm font-medium text-gray-500">
           Image {Number(id) + 1} of {imagesExamples.length}
         </div>
       </div>
@@ -59,7 +59,7 @@ const ImagePage = ({ params }) => {
               fill
               priority
               sizes="(max-width: 768px) 100vw, 60vw"
-              className="object-cover"
+              className="object-cover dark:border dark:border-gray-800"
             />
           </div>
         </div>
@@ -67,8 +67,8 @@ const ImagePage = ({ params }) => {
         <div className="lg:col-span-2 flex flex-col">
           <h1 className="text-2xl font-bold mb-4">AI Generated Artwork</h1>
 
-          <div className="bg-gray-50 border border-gray-700 p-4 rounded-xl mb-6">
-            <h2 className="text-sm uppercase text-gray-500 mb-2 font-bold">
+          <div className="bg-gray-50 border border-gray-700 p-4 rounded-xl mb-6 dark:bg-gray-800">
+            <h2 className="text-sm uppercase text-gray-500 mb-2 font-bold dark:text-gray-300">
               Prompt Used
             </h2>
             <p className="text-lg font-medium">{currentImage.prompt}</p>
@@ -76,16 +76,12 @@ const ImagePage = ({ params }) => {
 
           <button
             onClick={() => downloadImage(currentImage.src, Date.now())}
-            className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors"
+            className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors dark:hover:bg-gray-800"
           >
             <Download size={18} />
             <span>Download Image</span>
           </button>
 
-          {/* <button className="flex cursor-pointer items-center justify-center gap-2 border border-gray-700 rounded-lg py-3 font-medium hover:bg-gray-100 duration-500 transition-colors">
-              <Share2 size={18} />
-              <span>Share</span>
-            </button> */}
         </div>
       </div>
 
@@ -94,7 +90,7 @@ const ImagePage = ({ params }) => {
           href={hasPrevious ? `/image/${Number(id) - 1}` : "#"}
           className={`flex items-center font-semibold gap-2 px-5 py-2 rounded-lg ${
             hasPrevious
-              ? "hover:bg-gray-200 duration-500"
+              ? "hover:bg-gray-200 duration-500 dark:hover:bg-gray-800"
               : "opacity-50 cursor-not-allowed"
           }`}
           aria-disabled={!hasPrevious}
@@ -108,7 +104,7 @@ const ImagePage = ({ params }) => {
           href={hasNext ? `/image/${Number(id) + 1}` : "#"}
           className={`flex items-center font-semibold gap-2 px-5 py-2 rounded-lg ${
             hasNext
-              ? "hover:bg-gray-200 duration-500"
+              ? "hover:bg-gray-200 duration-500 dark:hover:bg-gray-800"
               : "opacity-50 cursor-not-allowed"
           }`}
           aria-disabled={!hasNext}

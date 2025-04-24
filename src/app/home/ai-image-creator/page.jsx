@@ -178,7 +178,7 @@ export default function AiGeneratorPage() {
       <HistoryBtn />
       <main className="flex flex-col z-[-5px] gap-4 mx-auto max-w-4xl">
         <div className="text-center mt-10">
-          <h1 className="text-3xl font-bold text-black">
+          <h1 className="text-3xl font-bold text-black dark:text-gray-200">
             <Typewriter words={[`Welcome`]} loop={1} typeSpeed={55} />{" "}
             <span className="bg-gradient-to-r bg-clip-text text-transparent from-blue-500 to-purple-600">
               {session?.user?.name && (
@@ -192,13 +192,13 @@ export default function AiGeneratorPage() {
               )}
             </span>
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 mt-2 dark:text-gray-200">
             What would you like to create today?
           </p>
         </div>
 
         <form
-          className="flex flex-col gap-4 border border-transparent shadow p-3 rounded-[5px] bg-white w-full"
+          className="flex flex-col gap-4 border border-transparent shadow p-3 rounded-[5px] bg-white w-full dark:border dark:border-gray-700 dark:bg-gray-950"
           onSubmit={handleSubmit}
         >
           <div className="border border-transparent p-2 rounded-[5px] bg-[#653bfc] flex flex-row gap-5">
@@ -222,7 +222,7 @@ export default function AiGeneratorPage() {
               onChange={(event) => setPrompt(event.target.value)}
               required
               placeholder="Describe the image you want to create... (e.g., 'A magical forest with glowing mushrooms, cinematic lighting')"
-              className="w-full h-32 px-4 py-3 text-gray-700 bg-gray-50 rounded-lg border border-gray-200 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 focus:outline-none transition duration-200 text-lg resize-none"
+              className="w-full h-32 px-4 py-3 text-gray-700 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-400 focus:border-violet-900 focus:ring-2 focus:ring-violet-100 focus:outline-none transition duration-200 text-lg resize-none"
             />
             <div className="absolute bottom-3 right-3 flex space-x-2">
               <button
@@ -259,7 +259,7 @@ export default function AiGeneratorPage() {
                   });
                 }
               }}
-              className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:border-violet-400 focus:outline-none transition"
+              className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 dark:bg-gray-800 dark:border-gray-600 dark:text-white focus:border-violet-400 focus:outline-none transition"
             >
               {!modelsLoaded ? (
                 <option>Loading models...</option>
@@ -277,7 +277,7 @@ export default function AiGeneratorPage() {
             <select
               value={imageCount}
               onChange={(event) => setImageCount(Number(event.target.value))}
-              className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 focus:border-violet-400 focus:outline-none transition"
+              className="flex-grow cursor-pointer px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 dark:bg-gray-800 dark:border-gray-600 dark:text-white focus:border-violet-400 focus:outline-none transition"
             >
               <option value="1">1 Image</option>
               <option value="2">2 Images</option>
@@ -290,7 +290,7 @@ export default function AiGeneratorPage() {
               disabled={!isFormValid || isSubmitting}
               className={`${
                 !isFormValid || isSubmitting
-                  ? "bg-gray-400 cursor-not-allowed"
+                  ? "bg-gray-400 cursor-not-allowed dark:bg-gray-600"
                   : "bg-[#653bfc] cursor-pointer hover:bg-[#5933e8]"
               } px-5 border border-transparent rounded-[5px] text-white font-semibold flex items-center justify-center transition-colors`}
             >
@@ -310,10 +310,10 @@ export default function AiGeneratorPage() {
         </p>
 
         {isSubmitting ? (
-          <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px]">
+          <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px] dark:border-gray-700 dark:bg-gray-900">
             <div className="flex flex-col items-center gap-3">
               <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#653bfc]"></div>
-              <p className="font-semibold text-gray-800">
+              <p className="font-semibold text-gray-800 dark:text-white">
                 Generating your{" "}
                 {imageCount > 1 ? `${imageCount} images` : "image"}...
               </p>
@@ -324,7 +324,7 @@ export default function AiGeneratorPage() {
             {generatedImages.map((imageUrl, index) => (
               <div
                 key={index}
-                className="flex flex-col gap-2 bg-gray-50 shadow rounded-lg p-3 overflow-hidden"
+                className="flex flex-col gap-2 bg-gray-50 shadow rounded-lg p-3 overflow-hidden dark:bg-gray-900"
               >
                 <div className="relative group">
                   <img
@@ -335,27 +335,24 @@ export default function AiGeneratorPage() {
                   <div className="absolute bottom-2 right-2 opacity-80 group-hover:opacity-100 transition-opacity">
                     <button
                       onClick={() => downloadImage(imageUrl, Date.now())}
-                      className="p-2 cursor-pointer rounded-full bg-white hover:bg-purple-600 hover:text-white shadow-md transition-colors duration-300"
+                      className="p-2 cursor-pointer text-black rounded-full bg-white hover:bg-purple-600 hover:text-white shadow-md transition-colors duration-300"
                       title="Download image"
                     >
                       <Download size={20} />
                     </button>
                   </div>
                 </div>
-                {/* <p className="text-[14px] text-gray-700 font-semibold line-clamp-2 h-10 overflow-hidden">
-                  {prompt || "Generated image"}
-                </p> */}
               </div>
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px]">
+          <div className="flex items-center justify-center h-[16rem] border border-gray-200 bg-gray-50 rounded-[5px] dark:border-gray-700 dark:bg-transparent">
             <div className="flex flex-col items-center gap-3">
               <Images size={40} color="#653bfc" strokeWidth={1.5} />
-              <p className="font-semibold text-gray-800">
+              <p className="font-semibold text-gray-800 dark:text-gray-500">
                 No images generated yet...
               </p>
-              <p className="text-gray-600 text-sm max-w-md text-center">
+              <p className="text-gray-600 text-sm max-w-md text-center dark:text-gray-200">
                 Select a model and enter a prompt to create your AI-generated
                 {imageCount > 1 ? ` ${imageCount} images` : " image"}.
               </p>
@@ -365,7 +362,7 @@ export default function AiGeneratorPage() {
 
         <Link
           href={"/home/feedback"}
-          className=" text-xl text-center underline underline-offset-8 text-indigo-950 font-bold mt-10"
+          className=" text-xl text-center underline underline-offset-8 text-indigo-950 font-medium mt-10 dark:text-indigo-800"
         >
           Let us know your opinions ➡️
         </Link>

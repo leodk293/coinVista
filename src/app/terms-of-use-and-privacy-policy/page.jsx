@@ -54,7 +54,7 @@ export default function TermsOfUsePageAndPrivacy() {
           3. Disclaimers & Limitation of Liability
         </h2>
         <p className="mt-2">
-          The Service is provided "as is" without warranties of any kind.
+          The Service is provided "as is" without garranties of any kind.
         </p>
 
         <h2 className="mt-6 text-2xl font-bold text-gray-900">4. Contact Us</h2>

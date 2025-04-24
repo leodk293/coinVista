@@ -4,6 +4,7 @@ import { MessageCircleMore } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Loader from "@/app/components/loader/Loader";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function FeedbackPage() {
   const { status, data: session } = useSession();
@@ -14,6 +15,17 @@ export default function FeedbackPage() {
   });
   const [isFocused, setIsFocused] = useState(false);
   const [commentText, setCommentText] = useState("");
+
+  const notify = (message) => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
 
   const addComment = async (e) => {
     e.preventDefault();
@@ -37,6 +49,7 @@ export default function FeedbackPage() {
       }
 
       setCommentText("");
+      notify("Thank you for your feedback!");
       setIsFocused(false);
       await getComments();
     } catch (error) {
@@ -107,7 +120,7 @@ export default function FeedbackPage() {
         </h2>
 
         {status === "authenticated" && (
-          <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg">
+          <div className="flex items-start gap-4 bg-gray-50 p-4 rounded-lg dark:bg-gray-800">
             {session.user?.image ? (
               <Image
                 width={40}
@@ -127,7 +140,7 @@ export default function FeedbackPage() {
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
                   onFocus={() => setIsFocused(true)}
-                  className={`w-full border outline-none font-semibold text-xl border-gray-300 rounded-lg resize-none bg-white p-3 transition-all ${
+                  className={`w-full border outline-none font-semibold text-xl border-gray-300 rounded-lg resize-none bg-white p-3 transition-all dark:bg-gray-800 dark:border-gray-700 ${
                     isFocused ? "border-blue-500" : ""
                   }`}
                   placeholder="Leave a comment..."
@@ -201,6 +214,7 @@ export default function FeedbackPage() {
             </p>
           )}
         </section>
+        <ToastContainer />
       </section>
     </main>
   );

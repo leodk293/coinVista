@@ -52,10 +52,14 @@ export default function HistoryPage() {
     <div className="flex mt-[60px] flex-col gap-5 mx-auto max-w-4xl px-3 md:px-0">
       <div className=" flex flex-col gap-2">
         <h1 className=" flex flex-row gap-2 font-bold text-2xl md:text-3xl">
-          <History className=" self-center" size={30} color="#000000" strokeWidth={2.5} />
-          <span className=" self-center">Your Prompt History</span>
+          <History
+            className=" self-center text-black dark:text-gray-200 "
+            size={30}
+            strokeWidth={2.5}
+          />
+          <span className=" self-center dark:text-gray-200">Your Prompt History</span>
         </h1>
-        <span className=" w-full h-[2px] bg-black" />
+        <span className=" w-full h-[2px] bg-black dark:bg-gray-200" />
       </div>
       {promptHistory.loading ? (
         <Loader />
@@ -68,10 +72,10 @@ export default function HistoryPage() {
           {promptHistory.data.map((prompt) => (
             <li
               key={prompt._id}
-              className="p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-violet-400 hover:bg-violet-50 cursor-pointer transition-all group"
+              className="p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-violet-400 dark:bg-transparent dark:border-gray-400 hover:bg-violet-50 dark:hover:bg-gray-800 cursor-pointer transition-all group"
             >
               <div className="flex justify-between items-start">
-                <p className=" text-[17px] text-gray-700 break-words">
+                <p className=" text-[17px] text-gray-700 break-words dark:text-gray-300">
                   {prompt.content}
                 </p>
                 <button
@@ -81,7 +85,7 @@ export default function HistoryPage() {
                   <Trash2 size={16} />
                 </button>
               </div>
-              <div className="mt-2 font-semibold flex justify-between text-xs text-gray-500">
+              <div className="mt-2 font-semibold flex justify-between text-sm text-gray-500 dark:text-gray-400">
                 <span>Model : {prompt.model}</span>
                 <span>
                   {new Date(

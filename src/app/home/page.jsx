@@ -37,8 +37,7 @@ const HomePage = () => {
   ];
 
   return (
-    <main className="container mx-auto max-w-7xl py-12 px-4">
-      {/* Hero Section */}
+    <main className="container text-black mx-auto max-w-7xl py-12 px-4 dark:text-white">
       <section className="flex flex-col items-center text-center mb-16">
         <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -54,7 +53,7 @@ const HomePage = () => {
             />
           </h1>
         </div>
-        <p className="text-lg md:text-xl max-w-2xl mb-8 text-gray-700 ">
+        <p className="text-lg md:text-xl max-w-2xl mb-8 text-gray-700 dark:text-gray-500 ">
           Create stunning, unique visuals that bring your wildest ideas to life
           with our AI image generator.
         </p>
@@ -65,7 +64,7 @@ const HomePage = () => {
               {steps.map((step, index) => (
                 <div
                   key={step.number}
-                  className="flex flex-1 flex-col items-center text-center"
+                  className="flex flex-1 flex-col items-center text-center dark:text-gray-500"
                 >
                   <div className="mb-4 bg-blue-100 rounded-full p-4 text-blue-600">
                     <step.icon size={28} />
@@ -74,7 +73,9 @@ const HomePage = () => {
                     {step.number}
                   </div>
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {step.description}
+                  </p>
 
                   {index < steps.length - 1 && (
                     <div className="hidden md:block absolute transform translate-x-full">
@@ -88,14 +89,16 @@ const HomePage = () => {
         </section>
 
         <div className="py-8 px-4 max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md overflow-hidden dark:from-gray-950 dark:to-gray-900 dark:border dark:border-gray-800">
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
                 <PlayCircle className="text-blue-600" size={24} />
-                <h2 className="text-2xl font-bold text-gray-800">Demo Video</h2>
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-500">
+                  Demo Video
+                </h2>
               </div>
 
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
                 Watch how our AI image generator works in this quick
                 demonstration
               </p>
@@ -117,7 +120,7 @@ const HomePage = () => {
 
         <Link
           href="/home/ai-image-creator"
-          className="flex flex-row mt-10 text-xl items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 hover:scale-105"
+          className="flex flex-row mt-10 text-xl items-center gap-2 bg-black dark:bg-transparent text-white dark:text-white px-6 py-3 rounded-full font-medium transition-all hover:opacity-90 hover:scale-105"
         >
           <span className=" self-center">Start Creating</span>
           <ArrowRight className=" self-center" size={30} />
@@ -133,8 +136,8 @@ const HomePage = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {imagesExamples.map((image, index) => (
-            <Link target="_blank" key={nanoid(10)} href={`/image/${index}`}>
-              <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg transition-all hover:shadow-xl">
+            <Link key={nanoid(10)} href={`/image/${index}`}>
+              <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg transition-all dark:border dark:border-gray-700 hover:shadow-xl">
                 <div className="aspect-square overflow-hidden">
                   <Image
                     src={image.src}
@@ -155,7 +158,7 @@ const HomePage = () => {
         <div className="mt-10 flex justify-center">
           <Link
             href="/home/ai-image-creator"
-            className="flex items-center gap-2 text-xl text-lg font-medium text-purple-600 dark:text-purple-400 hover:underline"
+            className="flex items-center gap-2 text-lg font-medium text-purple-600 dark:text-purple-400 hover:underline"
           >
             <span>Create your own</span>
             <ArrowRight className=" self-center" size={28} />

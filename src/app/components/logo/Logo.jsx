@@ -7,7 +7,9 @@ export default function Logo() {
   return (
     <Link className=" self-center" href={"/home"}>
       <div className=" flex flex-row gap-2">
-        <p className=" text-2xl font-bold self-center">AI-IMAGE-CREATOR✨</p>
+        <p className=" text-2xl text-black font-bold self-center dark:text-white">
+          AI-IMAGE-CREATOR✨
+        </p>
       </div>
     </Link>
   );

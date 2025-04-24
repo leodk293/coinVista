@@ -65,19 +65,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var imagesExamples = [{
   src: _exple24["default"],
-  prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+  prompt: "A pround american walking in NYC holding american flag"
 }, {
   src: _exple12["default"],
   prompt: "Donald Trump eating the pets of people"
 }, {
   src: _exple["default"],
-  prompt: "A cat holding a sign that says hello world"
+  prompt: "An astrnaut riding a pegasus in space"
 }, {
   src: _exple5["default"],
   prompt: "A sorcerer doing magics in Times square"
 }, {
   src: _exple6["default"],
-  prompt: "A panda wearing sunglasses and skateboarding"
+  prompt: "A superhero playing chess with a robotic dog"
 }, {
   src: _exple4["default"],
   prompt: "An astronaut riding a horse on Mars"
@@ -92,10 +92,10 @@ var imagesExamples = [{
   prompt: "A turtle in a spacesuit exploring an alien planet"
 }, {
   src: _exple10["default"],
-  prompt: "A pirate in a galactic space war"
+  prompt: "A cat on vacation on the beach reading newspapers"
 }, {
   src: _exple11["default"],
-  prompt: "A dragon drinking his coffee in a cafe in 2D"
+  prompt: "Son Goku throwing a fireball"
 }, {
   src: _exple13["default"],
   prompt: "A dragon drinking his coffee in a cafe in 3D"
@@ -104,7 +104,7 @@ var imagesExamples = [{
   prompt: "A golden retriever wearing a superhero cape"
 }, {
   src: _exple14["default"],
-  prompt: "A dragon drinking his coffee in a cafe in 3D"
+  prompt: "A lion with majestuous wings flying in the sky"
 }, {
   src: _exple2["default"],
   prompt: "A cat holding a sign that says hello world"
@@ -119,10 +119,10 @@ var imagesExamples = [{
   prompt: "Iron man talking with Elon Musk on the roof of a skycreaper"
 }, {
   src: _exple20["default"],
-  prompt: "A medieval knight playing games"
+  prompt: "A robotic cat eating burger in a fast-food restaurant"
 }, {
   src: _exple21["default"],
-  prompt: "A penguin DJ at a beach party"
+  prompt: "A samourai cat with a blazing sword"
 }, {
   src: _exple18["default"],
   prompt: "A dog holding a sign that says 'Hello world'"

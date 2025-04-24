@@ -30,7 +30,7 @@ import exple28 from './assets/exple-28.png';
 const imagesExamples = [
     {
         src: exple24,
-        prompt: "A dog in a nice suit holding an umbrella under the rain in NYC"
+        prompt: "A pround american walking in NYC holding american flag"
     },
     {
         src: exple12,
@@ -39,7 +39,7 @@ const imagesExamples = [
 
     {
         src: exple1,
-        prompt: "A cat holding a sign that says hello world"
+        prompt: "An astrnaut riding a pegasus in space"
     },
     {
         src: exple5,
@@ -48,7 +48,7 @@ const imagesExamples = [
 
     {
         src: exple6,
-        prompt: "A panda wearing sunglasses and skateboarding"
+        prompt: "A superhero playing chess with a robotic dog"
     },
     {
         src: exple4,
@@ -68,11 +68,11 @@ const imagesExamples = [
     },
     {
         src: exple10,
-        prompt: "A pirate in a galactic space war"
+        prompt: "A cat on vacation on the beach reading newspapers"
     },
     {
         src: exple11,
-        prompt: "A dragon drinking his coffee in a cafe in 2D"
+        prompt: "Son Goku throwing a fireball"
     },
 
     {
@@ -85,7 +85,7 @@ const imagesExamples = [
     },
     {
         src: exple14,
-        prompt: "A dragon drinking his coffee in a cafe in 3D"
+        prompt: "A lion with majestuous wings flying in the sky"
     },
     {
         src: exple2,
@@ -105,11 +105,11 @@ const imagesExamples = [
     },
     {
         src: exple20,
-        prompt: "A medieval knight playing games"
+        prompt: "A robotic cat eating burger in a fast-food restaurant"
     },
     {
         src: exple21,
-        prompt: "A penguin DJ at a beach party"
+        prompt: "A samourai cat with a blazing sword"
     },
     {
         src: exple18,
