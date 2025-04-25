@@ -137,9 +137,8 @@ const imagesExamples = [
     },
     {
         src: exple3,
-        prompt: "A cat holding a sign that says hello world"
+        prompt: "A dog and a cat fighting each other in a forest"
     },
-
     {
         src: exple28,
         prompt: "A giraffe driving a sports car"
