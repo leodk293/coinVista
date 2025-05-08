@@ -19,6 +19,4 @@ export default function Home() {
   if (status === "loading") {
     return <Loader />;
   }
-
-  return <>{/* You can add content here or leave it empty */}</>;
 }
