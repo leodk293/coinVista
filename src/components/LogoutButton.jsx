@@ -11,7 +11,7 @@ export default function LogoutButton() {
   return (
     <div className={` flex flex-row gap-3 justify-center items-center`}>
       {session?.user?.image && (
-        <div className="border border-gray-500 self-center rounded-full px-2 py-1 flex flex-row gap-2">
+        <div className="border border-transparent self-center rounded-full px-2 py-1 flex flex-row gap-2 md:border-gray-500">
           <Image
             src={session?.user?.image}
             alt={session?.user?.name}
@@ -20,7 +20,7 @@ export default function LogoutButton() {
             title={session?.user?.name}
             className="self-center border border-gray-950/10 rounded-full object-cover"
           />
-          <p className="text-black self-center dark:text-white">
+          <p className="text-black hidden self-center dark:text-white md:block">
             {session?.user?.name?.split(" ")[0]}
           </p>
         </div>

@@ -4,6 +4,7 @@ import { NextAuthProvider } from "../../Providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { CurrencyProvider } from "../../CurrencyContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,24 +24,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <NextAuthProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-950 transition-all duration-300 `}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+      <CurrencyProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-950 transition-all duration-300 `}
           >
-            <Header />
-            <div className=" mt-[17rem] z-10 mx-auto max-w-6xl min-h-screen md:mt-[13rem]">
-              {children}
-            </div>
-            <Footer />
-          </ThemeProvider>
-        </body>
-      </html>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header />
+              <div className=" mt-[15rem] z-10 px-2 mx-auto max-w-7xl min-h-screen md:px-0">
+                {children}
+              </div>
+              <Footer />
+            </ThemeProvider>
+          </body>
+        </html>
+      </CurrencyProvider>
     </NextAuthProvider>
   );
 }
