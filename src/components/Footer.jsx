@@ -7,15 +7,9 @@ import {
   Facebook,
   Linkedin,
   Github,
-  Mail,
-  Phone,
-  MapPin,
-  Heart,
   ArrowUp,
-  TrendingUp,
-  Shield,
-  Zap,
-  Globe,
+  Heart,
+  Sparkles,
 } from "lucide-react";
 
 export default function Footer() {
@@ -25,223 +19,111 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const quickLinks = [
-    { href: "/", label: "Home", icon: "🏠" },
-    { href: "/about", label: "About", icon: "📖" },
-    { href: "/markets", label: "Markets", icon: "📈" },
-    { href: "/portfolio", label: "Portfolio", icon: "💼" },
-    { href: "/news", label: "News", icon: "📰" },
-    { href: "/contact", label: "Contact", icon: "📧" },
-  ];
-
-  const cryptoResources = [
-    { href: "/learn", label: "Learn Crypto", icon: "🎓" },
-    { href: "/trading", label: "Trading Guide", icon: "📊" },
-    { href: "/security", label: "Security Tips", icon: "🔒" },
-    { href: "/api", label: "API Docs", icon: "⚡" },
-    { href: "/tools", label: "Tools", icon: "🛠️" },
-    { href: "/faq", label: "FAQ", icon: "❓" },
-  ];
-
   const socialLinks = [
-    { href: "#", icon: Twitter, label: "Twitter", color: "hover:text-sky-400" },
     {
-      href: "#",
+      href: "https://x.com/Aboubac48530295",
+      icon: Twitter,
+      label: "Twitter",
+      color: "hover:text-sky-400",
+    },
+    {
+      href: "https://www.facebook.com/profile.php?id=100092315485742",
       icon: Facebook,
       label: "Facebook",
       color: "hover:text-blue-600",
     },
     {
-      href: "#",
+      href: "https://www.linkedin.com/in/aboubacar-traore-495736252",
       icon: Linkedin,
       label: "LinkedIn",
       color: "hover:text-blue-500",
     },
     {
-      href: "#",
+      href: "https://github.com/leodk293",
       icon: Github,
       label: "GitHub",
       color: "hover:text-gray-900 dark:hover:text-white",
     },
   ];
 
-  const features = [
-    { icon: Shield, text: "Bank-level Security", color: "text-green-500" },
-    { icon: Zap, text: "Lightning Fast", color: "text-yellow-500" },
-    { icon: Globe, text: "Global Access", color: "text-blue-500" },
-    { icon: TrendingUp, text: "Real-time Data", color: "text-purple-500" },
-  ];
-
   return (
-    <footer className="relative mt-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-800 border-t border-gray-200/50 dark:border-gray-800/50 overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-500/10 to-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-0 w-48 h-48 bg-gradient-to-r from-green-500/10 to-teal-500/10 rounded-full blur-3xl animate-pulse delay-500" />
+    <footer className="relative mt-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 dark:from-gray-950 dark:via-slate-900 dark:to-blue-950/30 border-t border-gray-200/40 dark:border-gray-700/40 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-500/3 to-purple-500/3 dark:from-blue-400/3 dark:to-purple-400/3 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            <div className="lg:col-span-1 space-y-6">
-              <div className="group transform hover:scale-105 transition-transform duration-300">
-                <Logo />
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Your trusted cryptocurrency platform for trading, tracking, and
-                learning about digital assets. Join millions of users worldwide.
-              </p>
-
-              {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 group hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-                  <Mail className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm">support@cryptoplatform.com</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 group hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-                  <Phone className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-400 group hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
-                  <MapPin className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm">San Francisco, CA</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white relative">
-                Quick Links
-                <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-              </h3>
-              <nav className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <Link
-                    key={index}
-                    href={link.href}
-                    className="group flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:translate-x-1"
-                  >
-                    <span className="text-sm group-hover:scale-110 transition-transform duration-200">
-                      {link.icon}
-                    </span>
-                    <span className="text-sm font-medium">{link.label}</span>
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
-            {/* Crypto Resources */}
-            <div className="space-y-6">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white relative">
-                Resources
-                <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-green-500 to-teal-500 rounded-full" />
-              </h3>
-              <nav className="space-y-3">
-                {cryptoResources.map((resource, index) => (
-                  <Link
-                    key={index}
-                    href={resource.href}
-                    className="group flex items-center space-x-3 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-all duration-300 hover:translate-x-1"
-                  >
-                    <span className="text-sm group-hover:scale-110 transition-transform duration-200">
-                      {resource.icon}
-                    </span>
-                    <span className="text-sm font-medium">
-                      {resource.label}
-                    </span>
-                  </Link>
-                ))}
-              </nav>
-            </div>
-
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white relative">
-                  Why Choose Us
-                  <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full" />
-                </h3>
-                <div className="space-y-4">
-                  {features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="group flex items-center space-x-3"
-                    >
-                      <feature.icon
-                        className={`h-5 w-5 ${feature.color} group-hover:scale-110 transition-transform duration-200`}
-                      />
-                      <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                        {feature.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+        <div className="py-16 flex flex-col items-center space-y-8">
+          {/* Logo with enhanced styling */}
+          <div className="group transform hover:scale-105 transition-all duration-500 relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 dark:from-blue-400/20 dark:to-purple-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg group-hover:shadow-2xl transition-all duration-500">
+              <Logo />
             </div>
           </div>
-        </div>
 
-        {/* Social Media & Bottom Section */}
-        <div className="border-t border-gray-200/50 dark:border-gray-800/50 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-            {/* Social Links */}
-            <div className="flex items-center space-x-6">
-              <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                Follow us:
-              </span>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <Link
-                    key={index}
-                    href={social.href}
-                    className={`group p-3 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-400 ${social.color} transform hover:scale-110 transition-all duration-300 hover:-translate-y-1`}
-                    aria-label={social.label}
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </Link>
-                ))}
-              </div>
+          {/* Enhanced Social Media Section */}
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 font-medium">
+              <Sparkles className="h-4 w-4 text-blue-500 animate-pulse" />
+              <span>Connect with us</span>
+              <Sparkles className="h-4 w-4 text-purple-500 animate-pulse delay-500" />
             </div>
 
-            {/* Scroll to Top Button */}
-            <button
-              onClick={scrollToTop}
-              className="group cursor-pointer p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 hover:-translate-y-1"
-              aria-label="Scroll to top"
+            <div className="flex space-x-3">
+              {socialLinks.map((social, index) => (
+                <Link
+                  key={index}
+                  href={social.href}
+                  className={`group relative p-4 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-400 ${social.color} transform hover:scale-110 transition-all duration-500 hover:-translate-y-2`}
+                  aria-label={social.label}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-400/10 dark:to-purple-400/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <social.icon className="relative h-6 w-6 transition-transform duration-500 group-hover:rotate-12" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Enhanced Contact Link */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+            <Link
+              href="/contact"
+              className="relative inline-flex items-center px-8 py-3 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              <ArrowUp className="h-5 w-5 group-hover:animate-bounce" />
-            </button>
+              Contact Us
+            </Link>
           </div>
+
+          {/* Enhanced Scroll to Top */}
+          <button
+            onClick={scrollToTop}
+            className="group relative p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-500 hover:-translate-y-2 animate-pulse hover:animate-none"
+            aria-label="Scroll to top"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
+            <ArrowUp className="relative h-6 w-6 group-hover:animate-bounce transition-transform duration-500" />
+          </button>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-gray-200/30 dark:border-gray-800/30 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 text-sm text-gray-600 dark:text-gray-400">
-            <div className="flex items-center space-x-2">
-              <span>© {currentYear} CryptoPlatform. Made with</span>
-              <Heart className="h-4 w-4 text-red-500 animate-pulse" />
-              <span>by our team.</span>
-            </div>
-
-            <div className="flex items-center space-x-6">
-              <Link
-                href="/privacy"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="/cookies"
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-              >
-                Cookie Policy
-              </Link>
+        {/* Enhanced Copyright Section */}
+        <div className="relative">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          <div className="py-8 mt-8">
+            <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 text-sm">
+              <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
+                <span>© {currentYear} CryptoPlatform.</span>
+                <span className="hidden md:inline">•</span>
+                <div className="flex items-center space-x-1">
+                  <span>Crafted with</span>
+                  <Heart className="h-4 w-4 text-red-500 animate-pulse" />
+                  <span>and passion by our team</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

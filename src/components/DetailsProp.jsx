@@ -141,7 +141,6 @@ export default function DetailsProps({ cryptoId }) {
     } catch (error) {
       console.error("Error adding to list:", error);
 
-      // Show specific error message
       let errorMessage = error.message;
 
       // Handle specific error cases

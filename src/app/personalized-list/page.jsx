@@ -5,7 +5,6 @@ import { useCurrency } from "../../../CurrencyContext";
 import Image from "next/image";
 import Loader from "@/components/loader/Loader";
 import Link from "next/link";
-import { Star, TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 export default function PersonalizedListPage() {
   const [personalizedList, setPersonalizedList] = useState({
@@ -73,29 +72,22 @@ export default function PersonalizedListPage() {
     }
   }
 
-  const formatNumber = (num) => {
-    if (num >= 1e12) return (num / 1e12).toFixed(2) + "T";
-    if (num >= 1e9) return (num / 1e9).toFixed(2) + "B";
-    if (num >= 1e6) return (num / 1e6).toFixed(2) + "M";
-    if (num >= 1e3) return (num / 1e3).toFixed(2) + "K";
-    return num.toLocaleString();
-  };
-
-  const getPriceChangeColor = (change) => {
-    if (change > 0) return "text-emerald-600 dark:text-emerald-400";
-    if (change < 0) return "text-red-600 dark:text-red-400";
-    return "text-orange-600 dark:text-orange-400";
-  };
-
-  const getPriceChangeBg = (change) => {
-    if (change > 0) return "bg-emerald-50 dark:bg-emerald-900/20";
-    if (change < 0) return "bg-red-50 dark:bg-red-900/20";
-    return "bg-orange-50 dark:bg-orange-900/20";
-  };
-
   useEffect(() => {
     fetchPersonalizedList();
   }, [status, session]);
+
+  if (status === "unauthenticated") {
+    return (
+      <div className="w-full flex flex-col items-center justify-center min-h-[60vh]">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+          Please Log In
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          You need to be logged in to view your personalized list.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
