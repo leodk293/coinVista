@@ -18,7 +18,6 @@ const CryptoList = ({ length, currency, symbol }) => {
     loading: false,
   });
 
-
   async function fetchCryptoData() {
     setCryptoList((prev) => ({ ...prev, loading: true }));
     try {
@@ -68,12 +67,17 @@ const CryptoList = ({ length, currency, symbol }) => {
   return (
     <div className=" w-full">
       {cryptoList.data && (
-        <div className=" flex flex-col gap-2">
-          <h1 className="text-2xl font-bold">
-            Top {length} cryptocurrencies by market cap
-          </h1>
-          <span className=" w-[15%] p-[2px] bg-black rounded-full dark:bg-white" />
-        </div>
+        <header className="mb-8">
+          <div className="space-y-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+             {length <=50 ?` Top ${length} Cryptocurrencies`:` More than 200 Cryptocurrencies `}
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400 font-medium">
+              Ranked by market capitalization
+            </p>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full" />
+          </div>
+        </header>
       )}
       <div className="bg-white/70 w-full dark:bg-gray-900/70 mt-10 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl overflow-hidden">
         <div className="grid grid-cols-6 gap-4 px-6 py-4 bg-gray-50/80 dark:bg-gray-800/50 border-b border-gray-200/50 dark:border-gray-700/50 font-semibold text-gray-700 dark:text-gray-300">
@@ -111,7 +115,7 @@ const CryptoList = ({ length, currency, symbol }) => {
             {cryptoList.data.map((crypto, index) => (
               <Link
                 key={crypto.id}
-                href={`/crypto/${crypto.id}`}
+                href={`/crypto-currency/${crypto.id}`}
                 className="block hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-colors duration-200"
               >
                 <div className="grid grid-cols-6 gap-4 px-6 py-4 items-center">

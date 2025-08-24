@@ -15,24 +15,59 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
 import { useCurrency } from "../../CurrencyContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const { status, data: session } = useSession();
   const { setTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currency, setCurrency } = useCurrency();
+  const router = useRouter();
 
   const handleCurrencyChange = (event) => {
     setCurrency(event.target.value);
   };
 
   const navLinks = [
-    { href: "/", label: "LinkedIn", icon: "💼" },
-    { href: "/", label: "X/Twitter", icon: "🐦" },
-    { href: "/", label: "Facebook", icon: "📘" },
+    { href: "https://www.linkedin.com/in/aboubacar-traore-495736252", label: "LinkedIn", icon: "💼" },
+    { href: "https://x.com/Aboubac48530295", label: "X/Twitter", icon: "🐦" },
+    { href: "https://www.facebook.com/profile.php?id=100092315485742", label: "Facebook", icon: "📘" },
+    { href: "/personalized-list", label: "Personalized List", icon: "📃" },
   ];
+
+  const [cryptoList, setCryptoList] = useState([]);
+  const [cryptoName, setCryptoName] = useState("");
+
+  async function getCryptoList() {
+    try {
+      const response = await fetch(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false`
+      );
+      if (!response.ok) {
+        setCryptoList([]);
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setCryptoList(data);
+    } catch (error) {
+      console.error("Error fetching crypto data:", error);
+      setCryptoList([]);
+    }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (cryptoName.trim()) {
+      router.push(`/crypto?name=${encodeURIComponent(cryptoName)}`);
+      setCryptoName("");
+    }
+  };
+
+  useEffect(() => {
+    getCryptoList();
+  }, []);
 
   return (
     <div className="w-full fixed top-0 left-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-gray-950/80 shadow-lg border-b border-gray-200/20 dark:border-gray-800/20">
@@ -153,31 +188,49 @@ export default function Header() {
         </header>
 
         <div className="flex flex-col md:flex-row items-center justify-between pb-6 space-y-4 md:space-y-0 md:space-x-6">
-          <form className="flex-1 max-w-2xl mx-auto md:mx-0 w-full">
+          <form
+            onSubmit={handleSubmit}
+            className="flex-1 max-w-2xl mx-auto md:mx-0 w-full"
+          >
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none z-10">
                 <Search className="h-5 w-5 text-gray-400 group-focus-within:text-blue-500 transition-all duration-300 group-focus-within:scale-110" />
               </div>
               <input
                 type="text"
+                list="cryptos"
+                onChange={(event) => setCryptoName(event.target.value)}
+                value={cryptoName}
                 placeholder="Search for cryptocurrencies..."
                 className="w-full pl-14 pr-6 py-4 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm border-2 border-gray-200/50 dark:border-gray-700/50 rounded-2xl text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-300 shadow-sm hover:shadow-lg focus:shadow-xl hover:border-gray-300/70 dark:hover:border-gray-600/70"
                 required
               />
+              {cryptoList && cryptoList.length > 0 && (
+                <datalist id="cryptos">
+                  {Array.isArray(cryptoList) &&
+                    cryptoList.map((crypto) => (
+                      <option
+                        className=" capitalize"
+                        value={crypto.id}
+                        key={crypto.id}
+                      />
+                    ))}
+                </datalist>
+              )}
+
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>
           </form>
 
           <div className="flex items-center gap-4 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-xl px-4 py-2 border border-gray-200/50 dark:border-gray-700/50 shadow-sm">
             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Currency:
+              Currency :
             </span>
             <div className="relative">
               <select
                 onChange={handleCurrencyChange}
                 value={currency}
                 className="bg-white appearance-none dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg pr-8 pl-2 py-1 text-gray-900 dark:text-white font-medium cursor-pointer hover:border-blue-500 dark:hover:border-blue-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                //className="appearance-none bg-transparent text-sm font-semibold text-gray-900 dark:text-gray-100 pr-8 pl-2 py-1 rounded-lg border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200 cursor-pointer hover:bg-gray-50/50 dark:hover:bg-gray-800/50"
               >
                 <option value="USD">💲 USD</option>
                 <option value="EUR">💶 EUR</option>

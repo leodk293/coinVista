@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import Logo from "./Logo";
 import Link from "next/link";
@@ -82,10 +82,8 @@ export default function Footer() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
         <div className="py-16">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* Brand Section */}
             <div className="lg:col-span-1 space-y-6">
               <div className="group transform hover:scale-105 transition-transform duration-300">
                 <Logo />
@@ -112,7 +110,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white relative">
                 Quick Links
@@ -158,7 +155,6 @@ export default function Footer() {
               </nav>
             </div>
 
-            {/* Features & Newsletter */}
             <div className="space-y-8">
               <div className="space-y-6">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white relative">
@@ -181,26 +177,6 @@ export default function Footer() {
                   ))}
                 </div>
               </div>
-
-              {/* Newsletter Signup */}
-              {/* <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200/50 dark:border-blue-800/50">
-                <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3">
-                  Stay Updated
-                </h4>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">
-                  Get the latest crypto news and market insights.
-                </p>
-                <div className="flex space-x-2">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-3 py-2 text-xs bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-200"
-                  />
-                  <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-medium rounded-lg hover:from-blue-600 hover:to-purple-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
-                    Subscribe
-                  </button>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -230,7 +206,7 @@ export default function Footer() {
             {/* Scroll to Top Button */}
             <button
               onClick={scrollToTop}
-              className="group p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 hover:-translate-y-1"
+              className="group cursor-pointer p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 hover:-translate-y-1"
               aria-label="Scroll to top"
             >
               <ArrowUp className="h-5 w-5 group-hover:animate-bounce" />
