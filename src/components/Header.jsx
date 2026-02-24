@@ -97,7 +97,7 @@ export default function Header() {
 
           <div className="flex items-center space-x-3">
             {status === "authenticated" ? (
-              <div className="transform hover:scale-105 transition-transform duration-200">
+              <div className="transform transition-transform duration-200">
                 <LogoutButton />
               </div>
             ) : status === "unauthenticated" ? (
